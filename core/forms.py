@@ -218,13 +218,13 @@ class ReportForm(forms.ModelForm):
         widgets = {
             'reason': forms.Select(attrs={
                 'id': 'id_report_reason',
-                'class': 'w-full px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg text-white',
+                'class': 'form-control',
             }),
             'description': forms.Textarea(attrs={
                 'id': 'id_report_description',
                 'rows': 3,
                 'placeholder': 'Descreva o motivo da denúncia...',
-                'class': 'w-full px-4 py-2 bg-dark-900 border border-dark-700 rounded-lg text-white',
+                'class': 'form-control',
             }),
         }
 
@@ -321,7 +321,7 @@ class ConsumerSignUpForm(forms.Form):
         widget=forms.TextInput(attrs={
             'id': 'id_signup_full_name',
             'placeholder': 'Seu nome completo',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
     email = forms.EmailField(
@@ -329,7 +329,7 @@ class ConsumerSignUpForm(forms.Form):
         widget=forms.EmailInput(attrs={
             'id': 'id_signup_email',
             'placeholder': 'seu@email.com',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
     cpf = forms.CharField(
@@ -339,7 +339,7 @@ class ConsumerSignUpForm(forms.Form):
         widget=forms.TextInput(attrs={
             'id': 'id_signup_cpf',
             'placeholder': '000.000.000-00',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
     password = forms.CharField(
@@ -348,7 +348,7 @@ class ConsumerSignUpForm(forms.Form):
         widget=forms.PasswordInput(attrs={
             'id': 'id_signup_password',
             'placeholder': 'Senha forte (mín. 8 chars, A-z, 0-9, @#$)',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
     confirm_password = forms.CharField(
@@ -356,7 +356,7 @@ class ConsumerSignUpForm(forms.Form):
         widget=forms.PasswordInput(attrs={
             'id': 'id_signup_confirm_password',
             'placeholder': 'Repita sua senha',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
 
@@ -383,7 +383,7 @@ class CompanySignUpForm(forms.Form):
         widget=forms.TextInput(attrs={
             'id': 'id_company_name',
             'placeholder': 'Razão Social ou Nome Fantasia',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
     cnpj = forms.CharField(
@@ -393,7 +393,7 @@ class CompanySignUpForm(forms.Form):
         widget=forms.TextInput(attrs={
             'id': 'id_company_cnpj',
             'placeholder': '00.000.000/0001-00',
-            'class': 'w-full px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-white'
+            'class': 'form-control'
         })
     )
     category = forms.CharField(

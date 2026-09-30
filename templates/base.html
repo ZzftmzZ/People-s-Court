@@ -42,6 +42,47 @@
             --pc-glow-white: 0 0 25px rgba(255, 255, 255, 0.2);
         }
 
+        /* ── GLOBAL FORM INPUT STYLING (HIGH CONTRAST DARK 3D) ── */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="file"],
+        select,
+        textarea,
+        .form-control {
+            width: 100% !important;
+            background: #09090b !important;
+            color: #ffffff !important;
+            border: 1px solid #3f3f46 !important;
+            border-radius: 10px !important;
+            padding: 14px 16px !important;
+            font-size: 14px !important;
+            font-family: inherit !important;
+            outline: none !important;
+            transition: all 0.3s ease !important;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+            display: block !important;
+            box-sizing: border-box !important;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus,
+        .form-control:focus {
+            border-color: #ffffff !important;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25), inset 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+            background: #121215 !important;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #71717a !important;
+        }
+
         html { scroll-behavior: smooth; }
 
         body {
