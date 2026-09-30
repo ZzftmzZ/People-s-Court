@@ -1,273 +1,195 @@
 {% extends 'base.html' %}
-{% block title %}Cadastro - People's Court{% endblock %}
+{% block title %}Cadastrar-se 3D - People's Court{% endblock %}
 
 {% block extra_css %}
 <style>
-    .auth-wrapper {
-        min-height: calc(100vh - 160px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 20px;
-    }
-    .auth-card {
-        background: var(--pc-surface);
-        border: 1px solid var(--pc-border);
-        border-radius: 16px;
+    .auth-card-3d {
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--pc-border-glow);
+        border-radius: 20px;
         overflow: hidden;
         width: 100%;
-        max-width: 520px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+        max-width: 560px;
+        box-shadow: var(--pc-glass-shadow), var(--pc-glow-cyan);
     }
-    .auth-header {
-        background: var(--pc-black);
-        border-bottom: 1px solid var(--pc-border);
-        padding: 28px 32px;
-        text-align: center;
-    }
-    .auth-logo { font-size: 26px; font-weight: 900; color: var(--pc-white); letter-spacing: -0.5px; }
-    .auth-logo span { color: var(--pc-subtle); font-weight: 500; }
-    .auth-subtitle { font-size: 13px; color: var(--pc-muted); margin-top: 6px; }
-
-    /* ─── ROLE TABS ─── */
-    .role-tabs {
-        display: flex;
-        border-bottom: 1px solid var(--pc-border);
-        background: var(--pc-black);
-    }
-    .role-tab-btn {
-        flex: 1; padding: 16px 12px; font-size: 14px; font-weight: 700;
-        color: var(--pc-subtle); background: none; border: none;
+    .role-tab-btn-3d {
+        flex: 1; padding: 18px; font-size: 14px; font-weight: 800;
+        color: var(--pc-subtle); background: rgba(4, 7, 13, 0.8); border: none;
         border-bottom: 2px solid transparent; cursor: pointer;
-        transition: all 0.2s; font-family: inherit;
+        transition: all 0.3s ease; font-family: inherit;
         display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .role-tab-btn.active { color: var(--pc-white); border-bottom-color: var(--pc-white); background: var(--pc-surface); }
-    .role-tab-btn:hover { color: var(--pc-text); }
-
-    .auth-body { padding: 32px; }
-
-    .form-group { margin-bottom: 20px; }
-    .form-label {
-        display: block; font-size: 13px; font-weight: 700;
-        color: var(--pc-text); margin-bottom: 8px;
-    }
-    .form-label .req { color: #ef4444; }
-    .form-control {
-        width: 100%; border: 1px solid var(--pc-border); border-radius: 8px;
-        padding: 12px 14px; font-size: 14px; font-family: inherit;
-        color: var(--pc-text); background: var(--pc-black);
-        transition: border-color 0.2s, box-shadow 0.2s; outline: none;
-    }
-    .form-control:focus { border-color: var(--pc-white); box-shadow: 0 0 0 2px rgba(255,255,255,0.1); }
-    .form-control-file {
-        width: 100%; border: 1px dashed var(--pc-border-2); border-radius: 8px;
-        padding: 14px; font-size: 13px; font-family: inherit;
-        color: var(--pc-muted); background: var(--pc-black); cursor: pointer;
-    }
-    .form-control-file:hover { border-color: var(--pc-white); }
-    .form-error { font-size: 12px; color: #f87171; margin-top: 6px; font-weight: 500; }
-    .form-hint { font-size: 12px; color: var(--pc-subtle); margin-top: 5px; line-height: 1.4; }
-
-    .submit-btn {
-        width: 100%; background: var(--pc-white); color: var(--pc-black);
-        border: none; border-radius: 8px; padding: 14px;
-        font-size: 15px; font-weight: 800; font-family: inherit;
-        cursor: pointer; transition: all 0.2s; margin-top: 10px;
-    }
-    .submit-btn:hover { background: #e4e4e7; transform: translateY(-1px); }
-
-    .auth-footer {
-        text-align: center; margin-top: 24px;
-        padding-top: 20px; border-top: 1px solid var(--pc-border);
-        font-size: 13px; color: var(--pc-muted);
-    }
-    .auth-footer a { color: var(--pc-white); font-weight: 700; }
-    .auth-footer a:hover { text-decoration: underline; }
-
-    .non-field-error {
-        background: #450a0a; border: 1px solid #b91c1c;
-        border-radius: 8px; padding: 12px 14px;
-        font-size: 13px; color: #fca5a5; margin-bottom: 20px;
-    }
-
-    .terms-note {
-        font-size: 11px; color: var(--pc-subtle);
-        margin-top: 14px; text-align: center; line-height: 1.5;
-    }
-
-    .badge-lgpd {
-        display: inline-flex; align-items: center; gap: 6px;
-        font-size: 11px; color: #4ade80; background: rgba(34,197,94,0.1);
-        border: 1px solid rgba(34,197,94,0.2); padding: 4px 10px; border-radius: 6px;
-        margin-bottom: 16px; width: 100%; justify-content: center;
+    .role-tab-btn-3d.active {
+        color: var(--pc-cyan);
+        border-bottom-color: var(--pc-cyan);
+        background: rgba(15, 23, 42, 0.9);
+        box-shadow: inset 0 -4px 12px rgba(0,242,254,0.15);
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <div class="auth-header">
-            <div class="auth-logo">People's <span>Court</span></div>
-            <div class="auth-subtitle">Cadastre-se na Plataforma Oficial</div>
+<div style="min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+    <div class="auth-card-3d">
+        <div style="padding: 32px 32px 20px; text-align: center; border-bottom: 1px solid var(--pc-border);">
+            <div style="font-size: 36px; filter: drop-shadow(0 0 15px rgba(0,242,254,0.5));">⚖️</div>
+            <h1 style="font-size: 26px; font-weight: 800; color: #fff;">Criar Conta Segura</h1>
+            <p style="font-size: 13px; color: var(--pc-muted); margin-top: 4px;">Cadastro protegido com Criptografia LGPD Módulo 11 e 2FA</p>
         </div>
 
-        <!-- Role Tabs -->
-        <div class="role-tabs">
-            <button type="button" class="role-tab-btn {% if active_role == 'CONSUMER' %}active{% endif %}" id="tab-consumer" onclick="switchRole('CONSUMER')">
+        <div style="display: flex; border-bottom: 1px solid var(--pc-border);">
+            <button type="button" id="tab-consumer" class="role-tab-btn-3d active" onclick="switchRole('consumer')">
                 👤 Consumidor
             </button>
-            <button type="button" class="role-tab-btn {% if active_role == 'COMPANY' %}active{% endif %}" id="tab-company" onclick="switchRole('COMPANY')">
-                🏢 Empresa
+            <button type="button" id="tab-company" class="role-tab-btn-3d" onclick="switchRole('company')">
+                🏢 Empresa / Marca
             </button>
         </div>
 
-        <div class="auth-body">
-            <div class="badge-lgpd">
-                🛡️ Transmissão encriptada • Conforme a LGPD (Lei 13.709/2018)
+        <div style="padding: 32px;">
+            <!-- FORM CONSUMIDOR -->
+            <div id="form-consumer-container">
+                {% if consumer_form.non_field_errors %}
+                <div style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+                    {{ consumer_form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{% url 'core:signup' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="role" value="CONSUMER">
+
+                    <div class="form-group">
+                        <label class="form-label">Nome Completo <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.full_name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CPF (Algoritmo Módulo 11) <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.cpf }}
+                        <div style="font-size: 11px; color: var(--pc-subtle); margin-top: 4px;">✔ Protegido com Máscara e Criptografia LGPD no Banco de Dados</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nome de Usuário <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.username }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">E-mail para Verificação 2FA <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.email }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Telefone / Celular</label>
+                        {{ consumer_form.phone }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Senha Forte <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.password1 }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirmação da Senha <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.password2 }}
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                        🚀 Finalizar Cadastro de Consumidor
+                    </button>
+                </form>
             </div>
 
-            <!-- FORM CONSUMIDOR -->
-            <form id="form-consumer" method="POST" action="{% url 'core:signup' %}" style="display: {% if active_role == 'CONSUMER' %}block{% else %}none{% endif %};">
-                {% csrf_token %}
-                <input type="hidden" name="role" value="CONSUMER">
-
-                {% if active_role == 'CONSUMER' and consumer_form.non_field_errors %}
-                <div class="non-field-error">{{ consumer_form.non_field_errors.0 }}</div>
+            <!-- FORM EMPRESA -->
+            <div id="form-company-container" style="display: none;">
+                {% if company_form.non_field_errors %}
+                <div style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+                    {{ company_form.non_field_errors.0 }}
+                </div>
                 {% endif %}
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ consumer_form.full_name.id_for_label }}">
-                        Nome Completo <span class="req">*</span>
-                    </label>
-                    {{ consumer_form.full_name }}
-                    {% if consumer_form.full_name.errors %}<p class="form-error">{{ consumer_form.full_name.errors.0 }}</p>{% endif %}
-                </div>
+                <form method="POST" enctype="multipart/form-data" action="{% url 'core:signup' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="role" value="COMPANY">
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ consumer_form.cpf.id_for_label }}">
-                        CPF (com validação oficial) <span class="req">*</span>
-                    </label>
-                    {{ consumer_form.cpf }}
-                    <p class="form-hint">O CPF é armazenado com proteção e máscara de privacidade LGPD.</p>
-                    {% if consumer_form.cpf.errors %}<p class="form-error">{{ consumer_form.cpf.errors.0 }}</p>{% endif %}
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Razão Social / Nome Fantasia <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.name }}
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ consumer_form.email.id_for_label }}">
-                        E-mail de Contato <span class="req">*</span>
-                    </label>
-                    {{ consumer_form.email }}
-                    {% if consumer_form.email.errors %}<p class="form-error">{{ consumer_form.email.errors.0 }}</p>{% endif %}
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">CNPJ da Empresa <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.cnpj }}
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ consumer_form.password.id_for_label }}">
-                        Senha Forte <span class="req">*</span>
-                    </label>
-                    {{ consumer_form.password }}
-                    <p class="form-hint">Mínimo 8 caracteres, maiúsculas, minúsculas, números e caractere especial.</p>
-                    {% if consumer_form.password.errors %}<p class="form-error">{{ consumer_form.password.errors.0 }}</p>{% endif %}
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Categoria / Setor Corporativo <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.category }}
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ consumer_form.confirm_password.id_for_label }}">
-                        Confirmar Senha <span class="req">*</span>
-                    </label>
-                    {{ consumer_form.confirm_password }}
-                    {% if consumer_form.confirm_password.errors %}<p class="form-error">{{ consumer_form.confirm_password.errors.0 }}</p>{% endif %}
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Nome de Usuário da Conta <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.username }}
+                    </div>
 
-                <button type="submit" class="submit-btn">Criar Conta de Consumidor</button>
-            </form>
+                    <div class="form-group">
+                        <label class="form-label">E-mail Corporativo <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.email }}
+                    </div>
 
-            <!-- FORM EMPRESA (com Envio Obrigatório de Anexo) -->
-            <form id="form-company" method="POST" action="{% url 'core:signup' %}" enctype="multipart/form-data" style="display: {% if active_role == 'COMPANY' %}block{% else %}none{% endif %};">
-                {% csrf_token %}
-                <input type="hidden" name="role" value="COMPANY">
+                    <div class="form-group">
+                        <label class="form-label">Documento de Verificação (PDF/JPG)</label>
+                        {{ company_form.verification_document }}
+                    </div>
 
-                {% if active_role == 'COMPANY' and company_form.non_field_errors %}
-                <div class="non-field-error">{{ company_form.non_field_errors.0 }}</div>
-                {% endif %}
+                    <div class="form-group">
+                        <label class="form-label">Senha Forte <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.password1 }}
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.company_name.id_for_label }}">
-                        Nome da Empresa / Razão Social <span class="req">*</span>
-                    </label>
-                    {{ company_form.company_name }}
-                    {% if company_form.company_name.errors %}<p class="form-error">{{ company_form.company_name.errors.0 }}</p>{% endif %}
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirmação da Senha <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.password2 }}
+                    </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.cnpj.id_for_label }}">
-                        CNPJ
-                    </label>
-                    {{ company_form.cnpj }}
-                    {% if company_form.cnpj.errors %}<p class="form-error">{{ company_form.cnpj.errors.0 }}</p>{% endif %}
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.category.id_for_label }}">
-                        Categoria <span class="req">*</span>
-                    </label>
-                    {{ company_form.category }}
-                    {% if company_form.category.errors %}<p class="form-error">{{ company_form.category.errors.0 }}</p>{% endif %}
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.email.id_for_label }}">
-                        E-mail Corporativo <span class="req">*</span>
-                    </label>
-                    {{ company_form.email }}
-                    {% if company_form.email.errors %}<p class="form-error">{{ company_form.email.errors.0 }}</p>{% endif %}
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.verification_document.id_for_label }}">
-                        Documento Comprobatório (Obrigatório) <span class="req">*</span>
-                    </label>
-                    {{ company_form.verification_document }}
-                    <p class="form-hint">Envie um comprovante oficial em PDF, PNG ou JPG (Contrato Social, Cartão CNPJ, max 5MB). O anexo é verificado e armazenado em diretório privado seguro.</p>
-                    {% if company_form.verification_document.errors %}<p class="form-error">{{ company_form.verification_document.errors.0 }}</p>{% endif %}
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.password.id_for_label }}">
-                        Senha Corporativa <span class="req">*</span>
-                    </label>
-                    {{ company_form.password }}
-                    <p class="form-hint">Mínimo 8 caracteres com regras de complexidade de segurança.</p>
-                    {% if company_form.password.errors %}<p class="form-error">{{ company_form.password.errors.0 }}</p>{% endif %}
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="{{ company_form.confirm_password.id_for_label }}">
-                        Confirmar Senha <span class="req">*</span>
-                    </label>
-                    {{ company_form.confirm_password }}
-                    {% if company_form.confirm_password.errors %}<p class="form-error">{{ company_form.confirm_password.errors.0 }}</p>{% endif %}
-                </div>
-
-                <button type="submit" class="submit-btn">Cadastrar Empresa e Enviar Anexo</button>
-            </form>
-
-            <p class="terms-note">Ao se cadastrar no People's Court, você aceita os Termos de Uso e Política de Privacidade e Proteção de Dados.</p>
-
-            <div class="auth-footer">
-                Já possui uma conta? <a href="{% url 'core:login' %}">Acessar a Plataforma</a>
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                        🏢 Finalizar Cadastro de Empresa Auditada
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
 <script>
-function switchRole(role) {
-    document.getElementById('form-consumer').style.display = role === 'CONSUMER' ? 'block' : 'none';
-    document.getElementById('form-company').style.display = role === 'COMPANY' ? 'block' : 'none';
+    function switchRole(role) {
+        const btnCons = document.getElementById('tab-consumer');
+        const btnComp = document.getElementById('tab-company');
+        const formCons = document.getElementById('form-consumer-container');
+        const formComp = document.getElementById('form-company-container');
 
-    document.getElementById('tab-consumer').classList.toggle('active', role === 'CONSUMER');
-    document.getElementById('tab-company').classList.toggle('active', role === 'COMPANY');
-}
+        if (role === 'consumer') {
+            btnCons.classList.add('active');
+            btnComp.classList.remove('active');
+            formCons.style.display = 'block';
+            formComp.style.display = 'none';
+        } else {
+            btnComp.classList.add('active');
+            btnCons.classList.remove('active');
+            formComp.style.display = 'block';
+            formCons.style.display = 'none';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('role') === 'company') {
+            switchRole('company');
+        }
+    });
 </script>
 {% endblock %}

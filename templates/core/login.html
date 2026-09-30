@@ -1,181 +1,59 @@
 {% extends 'base.html' %}
-{% block title %}Entrar na Plataforma - People's Court{% endblock %}
+{% block title %}Entrar na Plataforma 3D - People's Court{% endblock %}
 
 {% block content %}
-<!-- Lucide Icons -->
-<script src="https://unpkg.com/lucide@latest"></script>
-
-<style>
-    .auth-wrapper {
-        min-height: calc(100vh - 180px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 20px;
-        background-color: #050505;
-    }
-    .auth-card {
-        background: #0d0d0f;
-        border: 1px solid #27272a;
-        border-radius: 16px;
-        overflow: hidden;
-        width: 100%;
-        max-width: 440px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-        transition: border-color 0.3s ease;
-    }
-    .auth-card:hover {
-        border-color: #3f3f46;
-    }
-    .auth-header {
-        background: #000000;
-        border-bottom: 1px solid #27272a;
-        padding: 28px 32px 20px 32px;
-        text-align: center;
-    }
-    .auth-logo { 
-        font-size: 26px; 
-        font-weight: 900; 
-        color: #ffffff; 
-        letter-spacing: -0.5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-    }
-    .auth-logo span { color: #71717a; font-weight: 500; }
-    .auth-subtitle { font-size: 13px; color: #a1a1aa; margin-top: 6px; }
-
-    .auth-body { padding: 32px; }
-
-    .form-group { margin-bottom: 20px; }
-    .form-label {
-        display: block; font-size: 13px; font-weight: 600;
-        color: #fafafa; margin-bottom: 8px;
-    }
-    .form-control {
-        width: 100%; border: 1px solid #27272a; border-radius: 8px;
-        padding: 12px 14px; font-size: 14px; font-family: inherit;
-        color: #ffffff; background: #000000;
-        transition: border-color 0.2s, box-shadow 0.2s; outline: none;
-    }
-    .form-control:focus { border-color: #ffffff; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15); }
-    .form-error { font-size: 12px; color: #f87171; margin-top: 6px; }
-
-    .submit-btn {
-        width: 100%; background: #ffffff; color: #000000;
-        border: none; border-radius: 8px; padding: 14px;
-        font-size: 14px; font-weight: 800; font-family: inherit;
-        cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-    }
-    .submit-btn:hover { background: #e4e4e7; transform: translateY(-1px); }
-
-    .auth-footer {
-        text-align: center; margin-top: 24px;
-        padding-top: 20px; border-top: 1px solid #27272a;
-        font-size: 13px; color: #a1a1aa;
-    }
-    .auth-footer a { color: #ffffff; font-weight: 700; }
-    .auth-footer a:hover { text-decoration: underline; }
-
-    .error-card {
-        background: #180909;
-        border: 1px solid #7f1d1d;
-        border-radius: 10px;
-        padding: 14px 16px;
-        font-size: 13px;
-        color: #fca5a5;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        line-height: 1.4;
-    }
-</style>
-
-<div class="auth-wrapper">
-    <div class="auth-card">
-        <!-- HEADER DA PLATAFORMA -->
-        <div class="auth-header">
-            <div class="auth-logo">
-                <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
-                People's <span>Court</span>
-            </div>
-            <div class="auth-subtitle">Acesso Direto à Plataforma</div>
+<div style="min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+    <div class="card glass-panel-3d" style="width: 100%; max-width: 460px; padding: 36px; border-color: var(--pc-border-glow); box-shadow: var(--pc-glass-shadow), var(--pc-glow-cyan);">
+        
+        <div style="text-align: center; margin-bottom: 28px;">
+            <div style="font-size: 36px; filter: drop-shadow(0 0 15px rgba(0,242,254,0.6)); margin-bottom: 8px;">⚖️</div>
+            <h1 style="font-size: 26px; font-weight: 800; color: #fff;">Acessar Conta 3D</h1>
+            <p style="font-size: 13px; color: var(--pc-muted); margin-top: 4px;">Ambiente de Autenticação Segura com Proteção LGPD</p>
         </div>
 
-        <div class="auth-body">
-            <!-- MENSAGENS DE ERRO GLOBAL / FORMULÁRIO -->
-            {% if form.non_field_errors %}
-                <div class="error-card">
-                    <i data-lucide="alert-circle" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
-                    <div>{{ form.non_field_errors.0 }}</div>
-                </div>
+        {% if form.non_field_errors %}
+        <div style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+            {{ form.non_field_errors.0 }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'core:login' %}">
+            {% csrf_token %}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
             {% endif %}
 
-            <form method="POST" action="{% url 'core:login' %}">
-                {% csrf_token %}
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px;">Nome de Usuário ou E-mail</label>
+                {{ form.username }}
+                {% if form.username.errors %}<div style="color: #f87171; font-size: 12px; margin-top: 4px;">{{ form.username.errors.0 }}</div>{% endif %}
+            </div>
 
-                <!-- CAMPO NOME DE USUÁRIO (USERNAME) -->
-                <div class="form-group">
-                    <label class="form-label" for="id_login_username">Nome de Usuário</label>
-                    <input
-                        type="text"
-                        id="id_login_username"
-                        name="username"
-                        class="form-control"
-                        placeholder="Digite seu nome de usuário"
-                        value="{{ request.POST.username|default:'' }}"
-                        autofocus
-                        required
-                    >
-                    {% if form.username.errors %}
-                        <p class="form-error">{{ form.username.errors.0 }}</p>
-                    {% endif %}
+            <div class="form-group" style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <label style="font-size: 13px; font-weight: 700; color: #fff;">Senha de Acesso</label>
+                    <a href="{% url 'core:password_reset_request' %}" style="font-size: 12px; color: var(--pc-cyan);">Esqueceu a senha?</a>
                 </div>
+                {{ form.password }}
+                {% if form.password.errors %}<div style="color: #f87171; font-size: 12px; margin-top: 4px;">{{ form.password.errors.0 }}</div>{% endif %}
+            </div>
 
-                <!-- CAMPO SENHA -->
-                <div class="form-group mb-2">
-                    <div class="flex justify-between items-center mb-2">
-                        <label class="form-label mb-0" for="id_login_password">Senha</label>
-                        <a href="{% url 'core:password_reset_request' %}" class="text-xs text-gray-400 hover:text-white underline">Esqueceu a senha?</a>
-                    </div>
-                    <input
-                        type="password"
-                        id="id_login_password"
-                        name="password"
-                        class="form-control"
-                        placeholder="Sua senha de acesso"
-                        required
-                    >
-                    {% if form.password.errors %}
-                        <p class="form-error">{{ form.password.errors.0 }}</p>
-                    {% endif %}
-                </div>
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                🔑 Entrar no Sistema
+            </button>
+        </form>
 
-                <!-- BOTÃO DE LOGIN DIRETO -->
-                <button type="submit" class="submit-btn">
-                    <i data-lucide="log-in" class="w-4 h-4"></i>
-                    <span>Entrar na Plataforma</span>
-                </button>
-            </form>
-
-            <div class="auth-footer">
-                Ainda não possui conta no People's Court? 
-                <br class="sm:hidden">
-                <a href="{% url 'core:signup' %}" class="mt-1 inline-block">Criar conta gratuita</a>
+        <div style="border-top: 1px solid var(--pc-border); margin-top: 28px; padding-top: 20px; text-align: center;">
+            <div style="font-size: 12px; color: var(--pc-subtle); margin-bottom: 12px;">OU AUTENTIQUE VIA SSO CORPORATIVO:</div>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="{% url 'core:sso_login' 'azure' %}" class="btn-ghost" style="font-size: 12px;">Azure AD</a>
+                <a href="{% url 'core:sso_login' 'google' %}" class="btn-ghost" style="font-size: 12px;">Google Workspace</a>
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 13px; color: var(--pc-muted);">
+                Ainda não tem conta? <a href="{% url 'core:signup' %}" style="color: var(--pc-cyan); font-weight: 700;">Cadastre-se aqui</a>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        lucide.createIcons();
-    });
-</script>
 {% endblock %}
