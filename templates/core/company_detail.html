@@ -1,223 +1,172 @@
 {% extends 'base.html' %}
-{% block title %}{{ company.name }} - People's Court{% endblock %}
-{% block meta_description %}Veja as reclamações, avaliações e a reputação de {{ company.name }} no People's Court.{% endblock %}
+{% block title %}{{ company.name }} 3D - People's Court Enterprise{% endblock %}
+{% block meta_description %}Veja o relatório de reputação corporativa, taxa de solução e reclamações da {{ company.name }}.{% endblock %}
 
 {% block extra_css %}
 <style>
-    /* ─── COMPANY HEADER ─── */
-    .company-header {
-        background: var(--pc-surface);
+    .company-header-3d {
+        background: radial-gradient(circle at 20% 50%, rgba(127, 0, 255, 0.15), rgba(0, 242, 254, 0.05), transparent 70%);
         border-bottom: 1px solid var(--pc-border);
-        padding: 32px 0;
+        padding: 40px 0;
     }
-    .company-header-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display: flex;
-        align-items: flex-start;
-        gap: 24px;
-        flex-wrap: wrap;
-    }
-    .company-logo-large {
-        width: 80px;
-        height: 80px;
-        border-radius: 12px;
-        background: var(--pc-surface-2);
-        border: 1px solid var(--pc-border);
-        color: var(--pc-white);
-        font-weight: 900;
-        font-size: 32px;
+    .company-logo-3d {
+        width: 90px;
+        height: 90px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+        border: 1px solid var(--pc-border-glow);
+        color: var(--pc-cyan);
+        font-weight: 800;
+        font-size: 36px;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6), var(--pc-glow-cyan);
         flex-shrink: 0;
     }
-    .company-header-info { flex: 1; }
-    .company-header-name { font-size: 28px; font-weight: 900; color: var(--pc-text); margin-bottom: 4px; }
-    .company-header-category { font-size: 13px; color: var(--pc-muted); margin-bottom: 10px; }
-    .company-header-badges { display: flex; gap: 8px; flex-wrap: wrap; }
-    .company-header-actions { display: flex; align-items: flex-start; }
-
-    /* ─── SCORE BOX ─── */
-    .score-box {
-        background: var(--pc-surface);
-        border: 1px solid var(--pc-border);
-        border-radius: 12px;
-        padding: 20px 24px;
+    .score-box-3d {
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--pc-border-glow);
+        border-radius: 18px;
+        padding: 24px 32px;
         text-align: center;
-        min-width: 150px;
+        box-shadow: var(--pc-glass-shadow), var(--pc-glow-cyan);
     }
-    .score-box-number { font-size: 42px; font-weight: 900; line-height: 1; color: var(--pc-white); }
-    .score-box-total { font-size: 13px; color: var(--pc-subtle); }
-    .score-box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--pc-muted); margin-top: 6px; }
-
-    /* ─── FRAUD ALERT ─── */
-    .fraud-alert-box {
-        background: #450a0a;
-        border: 1px solid #b91c1c;
-        border-radius: 12px;
-        padding: 18px 20px;
-        margin-bottom: 24px;
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
+    .score-number-3d {
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 1;
+        background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
-    .fraud-alert-box h4 { color: #fca5a5; font-size: 15px; font-weight: 800; margin-bottom: 4px; }
-    .fraud-alert-box p { color: #fecaca; font-size: 13px; margin: 0; }
 
-    /* ─── GRID LAYOUT ─── */
-    .company-content { display: grid; grid-template-columns: 1fr 320px; gap: 24px; margin-top: 30px; }
-    @media (max-width: 900px) { .company-content { grid-template-columns: 1fr; } }
-
-    /* ─── COMPLAINT LIST ─── */
-    .complaint-item {
-        background: var(--pc-surface);
-        border: 1px solid var(--pc-border);
-        border-radius: 10px;
-        padding: 18px 20px;
-        margin-bottom: 12px;
-        transition: border-color 0.2s;
-    }
-    .complaint-item:hover { border-color: var(--pc-white); }
-    .complaint-item-title { font-size: 16px; font-weight: 700; color: var(--pc-text); margin-bottom: 6px; }
-    .complaint-item-desc { font-size: 13px; color: var(--pc-muted); margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .complaint-item-meta { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--pc-subtle); }
-
-    /* ─── SIDEBAR CARDS ─── */
-    .sidebar-card {
-        background: var(--pc-surface);
-        border: 1px solid var(--pc-border);
-        border-radius: 12px;
+    .fraud-box-3d {
+        background: rgba(127, 29, 29, 0.8);
+        border: 1px solid #ef4444;
+        border-radius: 14px;
         padding: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 28px;
+        display: flex;
+        gap: 16px;
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
     }
-    .sidebar-card h3 { font-size: 15px; font-weight: 800; color: var(--pc-text); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--pc-border); }
-    .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--pc-border); font-size: 13px; }
-    .stat-row:last-child { border-bottom: none; }
-    .stat-row-label { color: var(--pc-muted); }
-    .stat-row-value { font-weight: 700; color: var(--pc-text); }
-
-    .btn-reclamar {
-        display: block; width: 100%; text-align: center;
-        background: var(--pc-white); color: var(--pc-black);
-        padding: 14px; border-radius: 8px; font-weight: 800; font-size: 14px;
-        transition: all 0.2s; margin-top: 10px;
-    }
-    .btn-reclamar:hover { background: #e4e4e7; }
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- Company Header -->
-<div class="company-header">
-    <div class="company-header-inner">
-        <div class="company-logo-large">{{ company.name|make_list|first }}</div>
-        <div class="company-header-info">
-            <h1 class="company-header-name">{{ company.name }}</h1>
-            <div class="company-header-category">📂 Categoria: {{ company.category }} {% if company.cnpj %}• CNPJ: {{ company.cnpj }}{% endif %}</div>
-            <div class="company-header-badges">
-                {% if company.fraud_alert %}
-                    <span class="rep-badge rep-fraud">⚠️ ALERTA DE FRAUDE</span>
-                {% elif company.is_verified %}
-                    <span class="rep-badge rep-bom">✓ EMPRESA COM DOCUMENTO VERIFICADO</span>
-                {% endif %}
-                <span class="rep-badge rep-none">{{ company.reputation_badge.label }}</span>
+<!-- COMPANY HEADER 3D -->
+<div class="company-header-3d">
+    <div class="page-container" style="padding: 0 24px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                <div class="company-logo-3d">{{ company.name|make_list|first }}</div>
+                <div>
+                    <h1 style="font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 6px;">{{ company.name }}</h1>
+                    <div style="font-size: 14px; color: var(--pc-muted); margin-bottom: 12px;">
+                        Setor: <strong style="color: var(--pc-cyan);">{{ company.category }}</strong> • CNPJ: <code style="color: #fff;">{{ company.cnpj|default:"Auditado/Verificado" }}</code>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <span class="rep-badge {% if company.fraud_alert %}rep-fraud{% elif company.reputation_score >= 8.0 %}rep-ra1000{% elif company.reputation_score >= 7.0 %}rep-bom{% elif company.reputation_score >= 5.0 %}rep-regular{% else %}rep-ruim{% endif %}">
+                            {{ company.reputation_badge.icon }} {{ company.reputation_badge.label }}
+                        </span>
+                        {% if company.is_verified %}
+                        <span class="badge badge-evaluated" style="border-color: var(--pc-cyan); color: var(--pc-cyan);">
+                            ✔ MARCA VERIFICADA
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="score-box">
-            <div class="score-box-number">{{ company.reputation_score }}<span class="score-box-total">/10</span></div>
-            <div class="score-box-label">Reputação People's Court</div>
+            <!-- Score Box -->
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="score-box-3d">
+                    <div class="score-number-3d">{{ company.reputation_score }}</div>
+                    <div style="font-size: 12px; color: var(--pc-subtle); margin-top: 4px;">Score Geral de 0 a 10</div>
+                </div>
+                {% if user.is_authenticated and user.role == 'CONSUMER' %}
+                <a href="{% url 'core:create_complaint' company.id %}" class="btn-primary" style="padding: 16px 24px; font-size: 14px;">
+                    ⚖️ Reclamar contra Esta Empresa
+                </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
 
 <div class="page-container">
     {% if company.fraud_alert %}
-    <div class="fraud-alert-box">
-        <span style="font-size:24px;">⚠️</span>
+    <div class="fraud-box-3d">
+        <span style="font-size: 28px;">⚠️</span>
         <div>
-            <h4>Alerta de Risco Detectado</h4>
-            <p>Esta empresa acumulou índice elevado de reclamações sem resposta nos últimos 30 dias. Recomendamos cautela extrema antes de realizar transações financeiras.</p>
+            <h4 style="color: #fecaca; font-size: 16px; font-weight: 800; margin-bottom: 4px;">ALERTA DE RISCO ELEVADO OU POSSÍVEL GOLPE</h4>
+            <p style="color: #fca5a5; font-size: 13px;">O motor estatístico identificou padrão de baixíssima taxa de resposta ou comportamento suspeito recente nesta empresa. Recomendamos cautela em transações financeiras.</p>
         </div>
     </div>
     {% endif %}
 
-    <div class="company-content">
-        <!-- Main Column: Complaints List -->
+    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 28px;">
+        <!-- COMPLAINT LIST -->
         <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h2 style="font-size:18px; font-weight:800;">Reclamações Registradas ({{ complaints.paginator.count }})</h2>
-                {% if user.role == 'CONSUMER' or not user.is_authenticated %}
-                <a href="{% url 'core:create_complaint' company.id %}" class="btn-primary" style="font-size:13px; padding:8px 16px;">+ Abrir Reclamação</a>
-                {% endif %}
-            </div>
-
-            {% if complaints %}
-                {% for complaint in complaints %}
-                <a href="{% url 'core:complaint_detail' complaint.id %}" style="display:block;">
-                    <div class="complaint-item">
-                        <div class="complaint-item-title">{{ complaint.title }}</div>
-                        <div class="complaint-item-desc">{{ complaint.description }}</div>
-                        <div class="complaint-item-meta">
-                            <span>
-                                {% if complaint.status == 'OPEN' %}<span class="badge badge-open">Em Aberto</span>
-                                {% elif complaint.status == 'RESPONDED' %}<span class="badge badge-responded">Respondida</span>
-                                {% elif complaint.status == 'REJOINDER' %}<span class="badge badge-rejoinder">Contrarresposta</span>
-                                {% elif complaint.status == 'EVALUATED' %}<span class="badge badge-evaluated">Avaliada</span>
-                                {% endif %}
-                            </span>
-                            <span>{{ complaint.created_at|date:"d/m/Y" }}</span>
-                        </div>
+            <h2 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 20px;">📋 Reclamações de Consumidores</h2>
+            
+            {% if page_obj %}
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                {% for complaint in page_obj %}
+                <div class="card" style="padding: 22px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="badge {% if complaint.status == 'OPEN' %}badge-open{% elif complaint.status == 'RESPONDED' %}badge-responded{% elif complaint.status == 'REJOINDER' %}badge-rejoinder{% else %}badge-evaluated{% endif %}">
+                            {{ complaint.get_status_display }}
+                        </span>
+                        <small style="color: var(--pc-subtle); font-size: 12px;">{{ complaint.created_at|date:"d/m/Y H:i" }}</small>
                     </div>
-                </a>
-                {% endfor %}
 
-                <!-- Pagination -->
-                {% if complaints.has_other_pages %}
-                <div style="display:flex; justify-content:center; gap:8px; margin-top:24px;">
-                    {% if complaints.has_previous %}
-                    <a href="?page={{ complaints.previous_page_number }}" class="btn-ghost">← Anterior</a>
-                    {% endif %}
-                    <span style="padding:8px 14px; font-size:13px; color:var(--pc-muted);">Página {{ complaints.number }} de {{ complaints.paginator.num_pages }}</span>
-                    {% if complaints.has_next %}
-                    <a href="?page={{ complaints.next_page_number }}" class="btn-ghost">Próxima →</a>
-                    {% endif %}
+                    <h3 style="font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 8px;">
+                        <a href="{% url 'core:complaint_detail' complaint.id %}" style="color: inherit;">{{ complaint.title }}</a>
+                    </h3>
+
+                    <p style="font-size: 14px; color: var(--pc-muted); margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                        {{ complaint.description }}
+                    </p>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="{% url 'core:complaint_detail' complaint.id %}" class="btn-ghost" style="font-size: 12px;">Visualizar Mediação →</a>
+                        {% if complaint.status == 'EVALUATED' and complaint.is_resolved %}
+                        <span style="font-size: 12px; color: var(--pc-cyan); font-weight: 700;">✔ Acordo Resolvido (Certificado SHA-256)</span>
+                        {% endif %}
+                    </div>
                 </div>
-                {% endif %}
+                {% endfor %}
+            </div>
             {% else %}
-                <div class="card" style="text-align:center; padding:40px;">
-                    <p style="color:var(--pc-muted);">Nenhuma reclamação registrada para esta empresa ainda.</p>
-                </div>
+            <div class="card" style="padding: 40px; text-align: center; color: var(--pc-muted);">
+                Nenhuma reclamação encontrada para esta empresa.
+            </div>
             {% endif %}
         </div>
 
-        <!-- Sidebar Column -->
+        <!-- SIDEBAR ENTERPRISE METRICS -->
         <div>
-            <div class="sidebar-card">
-                <h3>Sobre a Empresa</h3>
-                <p style="font-size:13px; color:var(--pc-muted); line-height:1.6; margin-bottom:16px;">
-                    {{ company.description|default:"Empresa cadastrada no diretório do People's Court." }}
-                </p>
-                {% if user.role == 'CONSUMER' or not user.is_authenticated %}
-                <a href="{% url 'core:create_complaint' company.id %}" class="btn-reclamar">Fazer uma Reclamação</a>
-                {% endif %}
-            </div>
-
-            <div class="sidebar-card">
-                <h3>Desempenho no People's Court</h3>
-                <div class="stat-row">
-                    <span class="stat-row-label">Total de Casos:</span>
-                    <span class="stat-row-value">{{ complaints.paginator.count }}</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-row-label">Score Geral:</span>
-                    <span class="stat-row-value">{{ company.reputation_score }}/10</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-row-label">Risco Detectado:</span>
-                    <span class="stat-row-value">{% if company.fraud_alert %}<span style="color:#ef4444;">ELEVADO</span>{% else %}<span style="color:#22c55e;">BAIXO</span>{% endif %}</span>
+            <div class="card" style="padding: 24px;">
+                <h3 style="font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 16px; border-bottom: 1px solid var(--pc-border); padding-bottom: 8px;">
+                    📊 Métricas de Atendimento 3D
+                </h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <div>
+                        <div style="font-size: 12px; color: var(--pc-subtle);">Total de Casos:</div>
+                        <div style="font-size: 18px; font-weight: 800; color: #fff;">{{ total_complaints }}</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 12px; color: var(--pc-subtle);">Taxa de Resposta:</div>
+                        <div style="font-size: 18px; font-weight: 800; color: var(--pc-cyan);">{{ response_rate_percentage }}%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 12px; color: var(--pc-subtle);">Índice de Solução:</div>
+                        <div style="font-size: 18px; font-weight: 800; color: var(--pc-green);">{{ resolution_rate_percentage }}%</div>
+                    </div>
                 </div>
             </div>
         </div>
