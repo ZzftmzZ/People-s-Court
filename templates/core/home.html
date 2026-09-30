@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+
+{% block title %}People's Court 3D - Mediação Corporativa, LGPD e Antifraude{% endblock %}
+{% block meta_description %}Plataforma 3D de Resolução de Conflitos Corporativos, Auditoria LGPD Imutável e Transparência.{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ── HERO 3D ── */
+    .hero-3d {
+        position: relative;
+        padding: 70px 24px 60px;
+        text-align: center;
+        background: radial-gradient(circle at 50% 20%, rgba(127, 0, 255, 0.15), rgba(0, 242, 254, 0.05), transparent 70%);
+        border-bottom: 1px solid var(--pc-border);
+        overflow: hidden;
+    }
+    .hero-3d-inner {
+        max-width: 860px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        border-radius: 30px;
+        background: rgba(0, 242, 254, 0.1);
+        border: 1px solid rgba(0, 242, 254, 0.3);
+        color: var(--pc-cyan);
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+    
+    .hero-3d h1 {
+        font-size: 46px;
+        font-weight: 800;
+        line-height: 1.15;
+        color: #ffffff;
+        margin-bottom: 16px;
+        letter-spacing: -1.5px;
+    }
+    .hero-3d h1 span {
+        background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet), var(--pc-gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-3d p {
+        font-size: 18px;
+        color: var(--pc-muted);
+        margin-bottom: 36px;
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Three.js 3D Hero Object Canvas Container */
+    #hero-3d-object-canvas {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 20px;
+        display: block;
+        filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.4));
+    }
+
+    .hero-search-3d {
+        display: flex;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 242, 254, 0.3);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(0, 242, 254, 0.15);
+        transition: all 0.3s ease;
+    }
+    .hero-search-3d:focus-within {
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(127, 0, 255, 0.4);
+        border-color: var(--pc-violet);
+    }
+    .hero-search-3d input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 20px 24px;
+        font-size: 16px;
+        font-family: inherit;
+        color: var(--pc-text);
+        background: transparent;
+    }
+    .hero-search-3d button {
+        background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet));
+        color: #ffffff;
+        border: none;
+        padding: 20px 36px;
+        font-size: 16px;
+        font-weight: 800;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+    .hero-search-3d button:hover {
+        opacity: 0.95;
+        box-shadow: inset 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .hero-stats-3d {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+    .stat-card-3d {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--pc-border);
+        padding: 16px 28px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .stat-card-3d strong {
+        display: block;
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--pc-cyan);
+    }
+    .stat-card-3d span {
+        font-size: 12px;
+        color: var(--pc-subtle);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+
+    /* ── CATEGORIES 3D GRID ── */
+    .categories-grid-3d {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+    }
+    .cat-card-3d {
+        background: var(--pc-surface);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--pc-border);
+        border-radius: 14px;
+        padding: 22px 14px;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cat-card-3d:hover {
+        border-color: var(--pc-cyan);
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 15px 30px rgba(0, 242, 254, 0.2);
+    }
+    .cat-icon-3d { font-size: 32px; display: block; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+    .cat-name-3d { font-size: 13px; font-weight: 700; color: var(--pc-text); }
+
+    /* AI ASSISTANT BANNER */
+    .ai-banner-3d {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8));
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 242, 254, 0.3);
+        border-radius: 20px;
+        padding: 32px;
+        margin: 40px 0;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), var(--pc-glow-cyan);
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION 3D -->
+<section class="hero-3d">
+    <div class="hero-3d-inner">
+        <span class="hero-tag">⚖️ AMBIENTE CORPORATIVO & LGPD BLINDADO</span>
+        
+        <!-- Interactive 3D Gavel Canvas -->
+        <canvas id="hero-3d-object-canvas"></canvas>
+
+        <h1>Plataforma 3D de Resolução de Conflitos e <span>Transparência Corporativa</span></h1>
+        <p>Conectando consumidores e empresas em uma rede auditável com criptografia de ponta a ponta, mediação guiada por IA e integridade garantida por selos digitais.</p>
+
+        <!-- Search Bar 3D -->
+        <form class="hero-search-3d" action="{% url 'core:search_companies' %}" method="GET">
+            <input type="text" name="q" id="hero-search-input" placeholder="Pesquise qualquer empresa (ex: Nubank, Itaú, Magalu)..." autocomplete="off">
+            <button type="submit">Buscar 3D 🔍</button>
+        </form>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats-3d">
+            <div class="stat-card-3d">
+                <strong>99.8%</strong>
+                <span>Privacidade LGPD</span>
+            </div>
+            <div class="stat-card-3d">
+                <strong>AES-256</strong>
+                <span>Field Criptografia</span>
+            </div>
+            <div class="stat-card-3d">
+                <strong>2FA & SSO</strong>
+                <span>Autenticação Forte</span>
+            </div>
+            <div class="stat-card-3d">
+                <strong>SHA-256</strong>
+                <span>Certificados Imutáveis</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="page-container">
+    
+    <!-- AI ASSISTANT BANNER -->
+    <div class="ai-banner-3d">
+        <div style="font-size: 48px; filter: drop-shadow(0 0 15px rgba(0,242,254,0.5));">🤖</div>
+        <div style="flex: 1;">
+            <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;">Mediação Inteligente com Inteligência Artificial</h3>
+            <p style="font-size: 14px; color: var(--pc-muted);">Nossa IA analisa reclamações em tempo real para orientar os consumidores a expor seus fatos com clareza objetiva, prevenindo ofensas e acelerando acordos resolutivos com as marcas.</p>
+        </div>
+        <a href="{% url 'core:signup' %}" class="btn-primary" style="padding: 12px 24px;">Abrir Reclamação 3D →</a>
+    </div>
+
+    <!-- CATEGORIES 3D -->
+    <section style="margin-bottom: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="font-size: 22px; font-weight: 800; color: #fff;">Explore por Setor Corporativo</h2>
+            <a href="{% url 'core:search_companies' %}" style="color: var(--pc-cyan); font-weight: 700; font-size: 14px;">Ver Empresas Auditadas →</a>
+        </div>
+
+        <div class="categories-grid-3d">
+            <a href="{% url 'core:search_companies' %}?q=banco" class="cat-card-3d">
+                <span class="cat-icon-3d">🏦</span>
+                <span class="cat-name-3d">Bancos & Fintechs</span>
+            </a>
+            <a href="{% url 'core:search_companies' %}?q=telefonia" class="cat-card-3d">
+                <span class="cat-icon-3d">📱</span>
+                <span class="cat-name-3d">Telecom & 5G</span>
+            </a>
+            <a href="{% url 'core:search_companies' %}?q=e-commerce" class="cat-card-3d">
+                <span class="cat-icon-3d">🛒</span>
+                <span class="cat-name-3d">E-commerce</span>
+            </a>
+            <a href="{% url 'core:search_companies' %}?q=seguro" class="cat-card-3d">
+                <span class="cat-icon-3d">🛡️</span>
+                <span class="cat-name-3d">Seguros</span>
+            </a>
+            <a href="{% url 'core:search_companies' %}?q=energia" class="cat-card-3d">
+                <span class="cat-icon-3d">⚡</span>
+                <span class="cat-name-3d">Energia</span>
+            </a>
+            <a href="{% url 'core:search_companies' %}?q=saude" class="cat-card-3d">
+                <span class="cat-icon-3d">🏥</span>
+                <span class="cat-name-3d">Saúde</span>
+            </a>
+            <a href="{% url 'core:search_companies' %}?q=transporte" class="cat-card-3d">
+                <span class="cat-icon-3d">🚗</span>
+                <span class="cat-name-3d">Mobilidade</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- RECENT COMPLAINTS & TOP COMPANIES GRID -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px;">
+        
+        <!-- RECENT COMPLAINTS -->
+        <div>
+            <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">📌 Reclamações Recentes em Mediação</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                {% for c in recent_complaints %}
+                <div class="card" style="padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <span class="badge {% if c.status == 'OPEN' %}badge-open{% elif c.status == 'RESPONDED' %}badge-responded{% elif c.status == 'REJOINDER' %}badge-rejoinder{% else %}badge-evaluated{% endif %}">
+                            {{ c.get_status_display }}
+                        </span>
+                        <small style="color: var(--pc-subtle); font-size: 12px;">{{ c.created_at|timesince }} atrás</small>
+                    </div>
+                    <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px;">
+                        <a href="{% url 'core:complaint_detail' c.id %}" style="color: inherit;">{{ c.title }}</a>
+                    </h4>
+                    <div style="font-size: 13px; color: var(--pc-muted); margin-bottom: 12px;">
+                        Empresa: <strong style="color: var(--pc-cyan);">{{ c.company.name }}</strong>
+                    </div>
+                    <a href="{% url 'core:complaint_detail' c.id %}" class="btn-ghost" style="font-size: 12px; padding: 6px 14px;">Acompanhar Caso →</a>
+                </div>
+                {% empty %}
+                <div class="card" style="padding: 30px; text-align: center; color: var(--pc-muted);">
+                    Nenhuma reclamação recente cadastrada.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- FEATURED COMPANIES -->
+        <div>
+            <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">🏆 Reputação Corporativa Auditada</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                {% for comp in top_companies %}
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4 style="font-size: 17px; font-weight: 800; color: #fff;">{{ comp.name }}</h4>
+                        <span style="font-size: 13px; color: var(--pc-subtle);">{{ comp.category }}</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge {% if comp.fraud_alert %}rep-fraud{% elif comp.reputation_score >= 8.0 %}rep-ra1000{% elif comp.reputation_score >= 7.0 %}rep-bom{% elif comp.reputation_score >= 5.0 %}rep-regular{% else %}rep-ruim{% endif %}">
+                            {{ comp.reputation_badge.icon }} {{ comp.reputation_badge.label }}
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">{{ comp.reputation_score }}/10</strong>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Three.js 3D Hero Gavel/Object Interactive Renderer -->
+<script>
+    (function() {
+        const canvas = document.getElementById('hero-3d-object-canvas');
+        if (!canvas || typeof THREE === 'undefined') return;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setSize(180, 180);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(ambientLight);
+
+        const pointLight1 = new THREE.PointLight(0x00f2fe, 3, 50);
+        pointLight1.position.set(5, 5, 5);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0x7f00ff, 3, 50);
+        pointLight2.position.set(-5, -5, 5);
+        scene.add(pointLight2);
+
+        // Group for 3D Gavel / Scale Object
+        const group = new THREE.Group();
+
+        // Metallic Gavel Head Geometry
+        const headGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.6, 32);
+        const metalMat = new THREE.MeshStandardMaterial({
+            color: 0x00f2fe,
+            metalness: 0.8,
+            roughness: 0.2,
+            wireframe: false
+        });
+        const head = new THREE.Mesh(headGeo, metalMat);
+        head.rotation.z = Math.PI / 2;
+        group.add(head);
+
+        // Gavel Handle Geometry
+        const handleGeo = new THREE.CylinderGeometry(0.12, 0.16, 2.4, 32);
+        const handleMat = new THREE.MeshStandardMaterial({
+            color: 0x7f00ff,
+            metalness: 0.6,
+            roughness: 0.3
+        });
+        const handle = new THREE.Mesh(handleGeo, handleMat);
+        handle.position.y = -1.2;
+        group.add(handle);
+
+        scene.add(group);
+
+        // Rotation Animation
+        function animateHeroObject() {
+            requestAnimationFrame(animateHeroObject);
+            group.rotation.y += 0.015;
+            group.rotation.x = Math.sin(Date.now() * 0.001) * 0.2;
+            group.rotation.z = Math.cos(Date.now() * 0.001) * 0.1;
+            renderer.render(scene, camera);
+        }
+        animateHeroObject();
+    })();
+</script>
+{% endblock %}

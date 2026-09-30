@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}People's Court - Plataforma 3D Corporativa de Resolução de Conflitos{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}People's Court - Resolução de Conflitos, Segurança Corporativa, Criptografia LGPD e Inteligência de Reputação.{% endblock %}">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Three.js (3D WebGL Library) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            /* ── ENTERPRISE DARK 3D GLASS PALETTE ── */
+            --pc-black:     #04070d;
+            --pc-bg:        #080c14;
+            --pc-surface:   rgba(15, 23, 42, 0.7);
+            --pc-surface-2: rgba(30, 41, 59, 0.8);
+            --pc-border:    rgba(255, 255, 255, 0.12);
+            --pc-border-glow: rgba(0, 242, 254, 0.35);
+            --pc-text:      #f8fafc;
+            --pc-muted:     #94a3b8;
+            --pc-subtle:    #64748b;
+            --pc-white:     #ffffff;
+
+            --pc-cyan:      #00f2fe;
+            --pc-violet:    #7f00ff;
+            --pc-gold:      #ffd700;
+            --pc-green:     #10b981;
+            --pc-red:       #ef4444;
+            --pc-yellow:    #f59e0b;
+            --pc-blue:      #3b82f6;
+
+            --pc-glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            --pc-glow-cyan: 0 0 25px rgba(0, 242, 254, 0.25);
+            --pc-glow-violet: 0 0 25px rgba(127, 0, 255, 0.3);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+            background-color: var(--pc-bg);
+            color: var(--pc-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ── 3D CANVAS BACKGROUND ── */
+        #canvas-3d-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        a { text-decoration: none; color: inherit; transition: all 0.25s ease; }
+        button { cursor: pointer; font-family: inherit; }
+
+        /* ─── TOP BAR ─── */
+        .top-bar {
+            background: rgba(4, 7, 13, 0.85);
+            backdrop-filter: blur(12px);
+            color: var(--pc-muted);
+            font-size: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--pc-border);
+            z-index: 101;
+        }
+        .top-bar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar a { color: var(--pc-muted); }
+        .top-bar a:hover { color: var(--pc-cyan); text-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
+        .top-bar-links { display: flex; gap: 24px; }
+
+        /* ─── NAVBAR GLASS 3D ─── */
+        .navbar {
+            background: rgba(10, 15, 26, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--pc-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+        .navbar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            height: 72px;
+        }
+        .navbar-logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--pc-white);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-logo span {
+            background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+        .navbar-logo-icon {
+            font-size: 26px;
+            filter: drop-shadow(0 0 10px rgba(0,242,254,0.6));
+            animation: float3d 3s ease-in-out infinite;
+        }
+        @keyframes float3d {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(4deg); }
+        }
+
+        .navbar-search {
+            flex: 1;
+            max-width: 540px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--pc-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(4, 7, 13, 0.6);
+            backdrop-filter: blur(10px);
+        }
+        .navbar-search:focus-within {
+            border-color: var(--pc-cyan);
+            box-shadow: var(--pc-glow-cyan);
+            transform: translateY(-1px);
+        }
+        .navbar-search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--pc-text);
+            background: transparent;
+        }
+        .navbar-search input::placeholder { color: var(--pc-subtle); }
+        .navbar-search button {
+            background: linear-gradient(135deg, var(--pc-surface-2), rgba(30, 41, 59, 0.9));
+            color: var(--pc-cyan);
+            border: none;
+            border-left: 1px solid var(--pc-border);
+            padding: 12px 22px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .navbar-search button:hover {
+            background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet));
+            color: #fff;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-left: auto;
+        }
+
+        /* ── BUTTONS 3D ── */
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--pc-border);
+            color: var(--pc-text);
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-ghost:hover {
+            border-color: var(--pc-cyan);
+            color: var(--pc-cyan);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet));
+            color: #ffffff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(127, 0, 255, 0.5), 0 0 15px rgba(0, 242, 254, 0.6);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+        }
+
+        .user-greeting { font-size: 13px; color: var(--pc-muted); }
+        .user-greeting strong { color: var(--pc-cyan); font-weight: 700; }
+
+        /* ─── CATEGORY BAR GLASS ─── */
+        .category-bar {
+            background: rgba(8, 12, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--pc-border);
+        }
+        .category-bar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+        .category-bar-inner::-webkit-scrollbar { display: none; }
+        .cat-link {
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--pc-muted);
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            border-radius: 8px 8px 0 0;
+        }
+        .cat-link:hover {
+            color: var(--pc-cyan);
+            border-bottom-color: var(--pc-cyan);
+            background: rgba(0, 242, 254, 0.05);
+        }
+
+        /* ─── TOAST MESSAGES ─── */
+        #messages-container {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .toast {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            font-size: 14px;
+            font-weight: 600;
+            animation: slideIn3d 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        @keyframes slideIn3d {
+            from { transform: translateX(120%) rotateY(-20deg); opacity: 0; }
+            to { transform: translateX(0) rotateY(0deg); opacity: 1; }
+        }
+        .toast-success { background: rgba(6, 78, 59, 0.85); border-color: #10b981; color: #a7f3d0; }
+        .toast-error   { background: rgba(127, 29, 29, 0.85); border-color: #ef4444; color: #fecaca; }
+        .toast-warning { background: rgba(120, 53, 15, 0.85); border-color: #f59e0b; color: #fef08a; }
+        .toast-info    { background: rgba(30, 58, 138, 0.85); border-color: #3b82f6; color: #bfdbfe; }
+        .toast-icon { font-size: 20px; flex-shrink: 0; }
+        .toast-close { margin-left: auto; background: none; border: none; font-size: 20px; color: inherit; opacity: 0.7; }
+        .toast-close:hover { opacity: 1; }
+
+        /* ─── MAIN ─── */
+        .main-content { flex: 1; position: relative; z-index: 1; }
+
+        /* ─── PAGE CONTAINER ─── */
+        .page-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 36px 24px;
+        }
+
+        /* ─── GLASS 3D CARDS ─── */
+        .card {
+            background: var(--pc-surface);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 16px;
+            border: 1px solid var(--pc-border);
+            box-shadow: var(--pc-glass-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            border-color: var(--pc-border-glow);
+            box-shadow: var(--pc-glass-shadow), var(--pc-glow-cyan);
+            transform: translateY(-4px);
+        }
+        .card-body { padding: 28px; }
+
+        /* ─── 3D BADGES ─── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            backdrop-filter: blur(8px);
+        }
+        .badge-open      { background: rgba(255,255,255,0.08); color: #f8fafc; border: 1px solid var(--pc-border); }
+        .badge-responded { background: rgba(59,130,246,0.2);  color: #60a5fa; border: 1px solid rgba(59,130,246,0.4); box-shadow: 0 0 10px rgba(59,130,246,0.2); }
+        .badge-rejoinder { background: rgba(127,0,255,0.2);   color: #c084fc; border: 1px solid rgba(127,0,255,0.4);  box-shadow: 0 0 10px rgba(127,0,255,0.2); }
+        .badge-evaluated { background: rgba(16,185,129,0.2);  color: #34d399; border: 1px solid rgba(16,185,129,0.4); box-shadow: 0 0 10px rgba(16,185,129,0.2); }
+        .badge-fraud     { background: rgba(239,68,68,0.25);  color: #f87171; border: 1px solid #ef4444; box-shadow: 0 0 15px rgba(239,68,68,0.4); }
+
+        /* ─── REPUTATION BADGES 3D ─── */
+        .rep-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+        .rep-ra1000  {
+            background: linear-gradient(135deg, rgba(16,185,129,0.25), rgba(0,242,254,0.2));
+            color: #34d399;
+            border: 1px solid #10b981;
+            box-shadow: 0 0 15px rgba(16,185,129,0.3);
+        }
+        .rep-bom {
+            background: linear-gradient(135deg, rgba(59,130,246,0.25), rgba(127,0,255,0.2));
+            color: #60a5fa;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 0 15px rgba(59,130,246,0.3);
+        }
+        .rep-regular {
+            background: rgba(245,158,11,0.2);
+            color: #fbbf24;
+            border: 1px solid #f59e0b;
+        }
+        .rep-ruim {
+            background: rgba(239,68,68,0.2);
+            color: #f87171;
+            border: 1px solid #ef4444;
+        }
+        .rep-fraud {
+            background: rgba(239,68,68,0.35);
+            color: #ffffff;
+            border: 1px solid #ef4444;
+            animation: pulse3d 2s infinite;
+        }
+        @keyframes pulse3d {
+            0%, 100% { box-shadow: 0 0 15px rgba(239,68,68,0.5); }
+            50% { box-shadow: 0 0 30px rgba(239,68,68,0.9); }
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: rgba(4, 7, 13, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--pc-border);
+            color: var(--pc-subtle);
+            font-size: 13px;
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 50px 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 36px;
+        }
+        .footer-col h4 {
+            color: var(--pc-text);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            background: linear-gradient(135deg, var(--pc-white), var(--pc-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: var(--pc-muted); }
+        .footer-col a:hover { color: var(--pc-cyan); padding-left: 4px; }
+        .footer-bottom {
+            border-top: 1px solid var(--pc-border);
+            padding: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--pc-white);
+        }
+        .footer-logo span { color: var(--pc-cyan); }
+
+        @media (max-width: 768px) {
+            .navbar-inner { gap: 12px; }
+            .navbar-search { display: none; }
+            .top-bar-links { display: none; }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- 3D WebGL Background Canvas -->
+    <canvas id="canvas-3d-bg"></canvas>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <span>🛡️ <strong>People's Court Enterprise</strong> • Criptografia LGPD/GDPR & ISO 27001 Imutável</span>
+            <div class="top-bar-links">
+                <a href="{% url 'core:safety_tips' %}">Dicas de Segurança</a>
+                <a href="{% url 'core:news' %}">Notícias Corporativas</a>
+                <a href="{% url 'core:support' %}">Central de Suporte</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-inner">
+            <!-- Logo -->
+            <a href="{% url 'core:home' %}" class="navbar-logo">
+                <span class="navbar-logo-icon">⚖️</span> People's <span>Court</span>
+            </a>
+
+            <!-- Search Bar -->
+            <form class="navbar-search" action="{% url 'core:search_companies' %}" method="GET">
+                <input type="text" name="q" placeholder="Buscar empresa ou serviço (ex: Nubank, Mercado Livre)..." autocomplete="off">
+                <button type="submit">Buscar 3D</button>
+            </form>
+
+            <!-- Auth Actions -->
+            <div class="navbar-actions">
+                {% if user.is_authenticated %}
+                    <span class="user-greeting">Olá, <strong>
+                        {% if user.role == 'CONSUMER' %}
+                            {% if user.consumer_profile.full_name %}{{ user.consumer_profile.full_name }}{% else %}{{ user.username }}{% endif %}
+                        {% elif user.role == 'COMPANY' %}
+                            {% if user.company_profile.name %}{{ user.company_profile.name }}{% else %}{{ user.username }}{% endif %}
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}
+                    </strong></span>
+                    {% if user.role == 'CONSUMER' %}
+                        <a href="{% url 'core:consumer_dashboard' %}" class="btn-ghost">📊 Meu Painel 3D</a>
+                    {% endif %}
+                    <form method="post" action="{% url 'core:logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-ghost">Sair</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'core:sso_login' 'azure' %}" class="btn-ghost" title="SSO Azure AD">🔐 SSO SSO</a>
+                    <a href="{% url 'core:login' %}" class="btn-ghost">Entrar</a>
+                    <a href="{% url 'core:signup' %}" class="btn-primary">Cadastrar</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Bar -->
+    <nav class="category-bar">
+        <div class="category-bar-inner">
+            <a href="{% url 'core:search_companies' %}?q=banco" class="cat-link">🏦 Bancos & Fintechs</a>
+            <a href="{% url 'core:search_companies' %}?q=telefonia" class="cat-link">📱 Telecom & 5G</a>
+            <a href="{% url 'core:search_companies' %}?q=internet" class="cat-link">🌐 Provedores Web</a>
+            <a href="{% url 'core:search_companies' %}?q=e-commerce" class="cat-link">🛒 E-commerce & Varejo</a>
+            <a href="{% url 'core:search_companies' %}?q=seguro" class="cat-link">🛡️ Seguros & Tech</a>
+            <a href="{% url 'core:search_companies' %}?q=energia" class="cat-link">⚡ Utilities</a>
+            <a href="{% url 'core:search_companies' %}?q=saude" class="cat-link">🏥 Saúde & Seguros</a>
+            <a href="{% url 'core:search_companies' %}?q=transporte" class="cat-link">🚗 Mobilidade</a>
+            <a href="{% url 'core:search_companies' %}?q=" class="cat-link">Ver todas →</a>
+        </div>
+    </nav>
+
+    <!-- Messages / Toasts -->
+    {% if messages %}
+    <div id="messages-container">
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <div class="toast toast-success">
+            <span class="toast-icon">✅</span>
+            <p>{{ message }}</p>
+            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        </div>
+        {% elif message.tags == 'error' %}
+        <div class="toast toast-error">
+            <span class="toast-icon">❌</span>
+            <p>{{ message }}</p>
+            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        </div>
+        {% elif message.tags == 'warning' %}
+        <div class="toast toast-warning">
+            <span class="toast-icon">⚠️</span>
+            <p>{{ message }}</p>
+            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        </div>
+        {% else %}
+        <div class="toast toast-info">
+            <span class="toast-icon">ℹ️</span>
+            <p>{{ message }}</p>
+            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.toast').forEach((toast, i) => {
+                setTimeout(() => {
+                    toast.style.transition = 'opacity 0.5s, transform 0.5s';
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(50px)';
+                    setTimeout(() => toast.remove(), 500);
+                }, 6000 + i * 300);
+            });
+        });
+    </script>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-col">
+                <h4>Consumidores</h4>
+                <ul>
+                    <li><a href="{% url 'core:search_companies' %}">Buscar Empresas</a></li>
+                    <li><a href="{% url 'core:signup' %}">Criar Conta Segura</a></li>
+                    <li><a href="{% url 'core:safety_tips' %}">Privacidade LGPD</a></li>
+                    <li><a href="{% url 'core:support' %}">Suporte 24/7</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Empresas & SSO</h4>
+                <ul>
+                    <li><a href="{% url 'core:signup' %}?role=company">Cadastrar Marca</a></li>
+                    <li><a href="{% url 'core:sso_login' 'azure' %}">Portal Enterprise Azure AD</a></li>
+                    <li><a href="{% url 'core:sso_login' 'google' %}">Google Workspace SSO</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Conformidade & LGPD</h4>
+                <ul>
+                    <li><a href="{% url 'core:safety_tips' %}">Direito ao Esquecimento</a></li>
+                    <li><a href="{% url 'core:news' %}">Combate a Golpes</a></li>
+                    <li><a href="{% url 'core:support' %}">Canal DPO / Ouvidoria</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Certificação 3D</h4>
+                <ul>
+                    <li><span style="color: var(--pc-cyan); font-weight: 700;">✔ Criptografia Field-Level</span></li>
+                    <li><span style="color: var(--pc-violet); font-weight: 700;">✔ Blockchain Hash Seal</span></li>
+                    <li><span style="color: var(--pc-gold); font-weight: 700;">✔ ISO 27001 Ready</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">People's <span>Court 3D</span></div>
+            <span>© 2026 People's Court. Plataforma de Mediação com Proteção de Dados LGPD e Autenticação Corporativa.</span>
+        </div>
+    </footer>
+
+    <!-- Three.js 3D Background Particle Network Script -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('canvas-3d-bg');
+            if (!canvas || typeof THREE === 'undefined') return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 400;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Particles Geometry
+            const particleCount = 80;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const velocities = [];
+
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 800;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
+
+                velocities.push({
+                    x: (Math.random() - 0.5) * 0.4,
+                    y: (Math.random() - 0.5) * 0.4,
+                    z: (Math.random() - 0.5) * 0.4
+                });
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            // Particle Material
+            const material = new THREE.PointsMaterial({
+                color: 0x00f2fe,
+                size: 3.5,
+                transparent: true,
+                opacity: 0.7
+            });
+
+            const particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            // Mouse Interaction
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+                mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+            });
+
+            // Resize listener
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Animation Loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const pos = particles.geometry.attributes.position.array;
+                for (let i = 0; i < particleCount; i++) {
+                    pos[i * 3] += velocities[i].x;
+                    pos[i * 3 + 1] += velocities[i].y;
+                    pos[i * 3 + 2] += velocities[i].z;
+
+                    if (pos[i * 3] < -400 || pos[i * 3] > 400) velocities[i].x *= -1;
+                    if (pos[i * 3 + 1] < -400 || pos[i * 3 + 1] > 400) velocities[i].y *= -1;
+                }
+                particles.geometry.attributes.position.needsUpdate = true;
+
+                scene.rotation.y += 0.001;
+                scene.rotation.x += (mouseY * 0.0005 - scene.rotation.x) * 0.05;
+                scene.rotation.y += (mouseX * 0.0005 - scene.rotation.y) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+        })();
+
+        // 3D Tilt Card Interactive Effect
+        document.addEventListener('mousemove', (e) => {
+            const tiltCards = document.querySelectorAll('.card, .glass-panel-3d');
+            tiltCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 25;
+                    const rotateY = (centerX - x) / 25;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                } else {
+                    card.style.transform = '';
+                }
+            });
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

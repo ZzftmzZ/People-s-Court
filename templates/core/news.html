@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Notícias e Informes - People's Court{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6 text-white">Notícias e Informes de Segurança</h1>
+    
+    {% if articles %}
+        <div class="space-y-6">
+            {% for article in articles %}
+                <div class="bg-dark-900 border border-dark-700 p-6 rounded-xl hover:border-gray-600 transition-colors">
+                    <span class="text-xs font-semibold px-2.5 py-1 bg-gray-800 text-gray-300 rounded-full mb-3 inline-block">
+                        {{ article.source_name }} • {{ article.publication_date|date:"d/m/Y" }}
+                    </span>
+                    <h2 class="text-xl font-semibold mb-2 text-white">
+                        <a href="{{ article.external_link }}" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                            {{ article.title }}
+                        </a>
+                    </h2>
+                    <p class="text-gray-400 mb-4">{{ article.summary }}</p>
+                    <a href="{{ article.external_link }}" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-white underline hover:text-gray-300">
+                        Ler matéria completa &rarr;
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="bg-dark-900 border border-dark-700 p-8 rounded-xl text-center text-gray-400">
+            Nenhuma notícia cadastrada no momento.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
