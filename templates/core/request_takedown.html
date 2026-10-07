@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Contestar Conteúdo - People's Court{% endblock %}
+{% block content %}
+<div class="page-container" style="max-width: 600px; margin: 40px auto;">
+  <h1 style="font-size: 22px; font-weight: 800; color: #fff;">Contestar conteúdo (Art. 19, Marco Civil)</h1>
+  <p style="font-size: 14px; color: #d4d4d8; margin: 12px 0 24px;">
+    Reclamação: <strong>{{ complaint.title }}</strong>. Ao enviar, o conteúdo é suspenso preventivamente e preservado
+    com selo de integridade até a análise.
+  </p>
+  <form method="POST" action="{% url 'core:request_takedown' complaint.id %}">
+    {% csrf_token %}
+    <label for="id_takedown_reason" style="display:block; font-weight:700; margin-bottom:8px;">Motivo:</label>
+    {{ form.reason }}
+    <label for="id_takedown_justification" style="display:block; font-weight:700; margin: 20px 0 8px;">Justificativa:</label>
+    {{ form.justification }}
+    {% for e in form.justification.errors %}<p style="color:#fff; font-weight:700;">{{ e }}</p>{% endfor %}
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <a href="{% url 'core:complaint_detail' complaint.id %}" class="btn-ghost" style="flex:1; justify-content:center;">Cancelar</a>
+      <button type="submit" class="btn-primary" style="flex:1; justify-content:center;">Enviar contestação</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
