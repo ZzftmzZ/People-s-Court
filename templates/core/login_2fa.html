@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% block title %}Verificação em Duas Etapas (2FA) - People's Court{% endblock %}
+
+{% block content %}
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+    .auth-wrapper {
+        min-height: calc(100vh - 180px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        background-color: #050505;
+    }
+    .auth-card {
+        background: #0d0d0f;
+        border: 1px solid #27272a;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 440px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    }
+    .auth-header {
+        background: #000000;
+        border-bottom: 1px solid #27272a;
+        padding: 28px 32px 20px 32px;
+        text-align: center;
+    }
+    .auth-logo { 
+        font-size: 24px; 
+        font-weight: 900; 
+        color: #ffffff; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .auth-subtitle { font-size: 13px; color: #a1a1aa; margin-top: 6px; }
+
+    .auth-body { padding: 32px; text-align: center; }
+
+    .code-input-group {
+        display: flex;
+        justify-content: center;
+        margin: 24px 0;
+    }
+
+    .form-control-2fa {
+        width: 100%;
+        max-width: 240px;
+        border: 1px solid #3f3f46;
+        border-radius: 10px;
+        padding: 14px;
+        font-size: 26px;
+        font-family: monospace;
+        letter-spacing: 0.4em;
+        text-align: center;
+        color: #ffffff;
+        background: #000000;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control-2fa:focus {
+        border-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+    }
+
+    .submit-btn {
+        width: 100%; background: #ffffff; color: #000000;
+        border: none; border-radius: 8px; padding: 14px;
+        font-size: 14px; font-weight: 800; font-family: inherit;
+        cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .submit-btn:hover { background: #e4e4e7; transform: translateY(-1px); }
+
+    .demo-banner {
+        background: #18181b;
+        border: 1px dashed #3f3f46;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 12px;
+        color: #a1a1aa;
+        margin-bottom: 24px;
+    }
+
+    .timer-text {
+        font-size: 12px;
+        color: #71717a;
+        margin-top: 16px;
+    }
+</style>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <!-- HEADER DO 2FA -->
+        <div class="auth-header">
+            <div class="auth-logo">
+                <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+                Verificação <span>2FA</span>
+            </div>
+            <div class="auth-subtitle">Proteção Adicional de Identidade (LGPD)</div>
+        </div>
+
+        <div class="auth-body">
+            <!-- ALERTA / CÓDIGO DEMO PARA DESENVOLVIMENTO -->
+            <div class="demo-banner">
+                <div class="flex items-center justify-center gap-2 mb-1 text-white font-semibold">
+                    <i data-lucide="mail" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Código de Segurança Enviado</span>
+                </div>
+                Enviado para o usuário: <strong class="text-white">{{ user.email|default:user.username }}</strong>
+                {# FIX (info disclosure): demo_code removido do DOM.          #}
+                {# Cheque o console do servidor (DEBUG 2FA EMAIL) durante dev. #}
+            </div>
+
+            <!-- FORMULÁRIO 2FA -->
+            <form method="POST" action="{% url 'core:verify_2fa' %}">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="text-red-400 text-xs mb-4">{{ form.non_field_errors.0 }}</div>
+                {% endif %}
+
+                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
+                    Digite o código de 6 dígitos
+                </label>
+
+                <div class="code-input-group">
+                    <input
+                        type="text"
+                        name="code"
+                        id="id_2fa_code"
+                        class="form-control-2fa"
+                        placeholder="000000"
+                        maxlength="6"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                {% if form.code.errors %}
+                    <p class="text-red-400 text-xs mb-4">{{ form.code.errors.0 }}</p>
+                {% endif %}
+
+                <button type="submit" class="submit-btn">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <span>Confirmar e Acessar Plataforma</span>
+                </button>
+            </form>
+
+            <div class="timer-text">
+                O código de verificação expira em <span id="timer" class="font-mono text-white">05:00</span>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#27272a] text-xs">
+                <a href="{% url 'core:login' %}" class="text-gray-400 hover:text-white underline">Voltar para a tela de login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        lucide.createIcons();
+
+        // Temporizador regressivo simples de 5 minutos
+        let timeLeft = 300;
+        const timerEl = document.getElementById('timer');
+        const interval = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                timerEl.textContent = 'Expirado';
+            }
+            timeLeft--;
+        }, 1000);
+    });
+</script>
+{% endblock %}

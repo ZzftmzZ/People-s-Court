@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% block title %}Cadastrar-se 3D - People's Court{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-card-3d {
+        background: rgba(9, 9, 11, 0.75);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--pc-border-glow);
+        border-radius: 20px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 560px;
+        box-shadow: var(--pc-glass-shadow), var(--pc-glow-cyan);
+    }
+    .role-tab-btn-3d {
+        flex: 1; padding: 18px; font-size: 14px; font-weight: 800;
+        color: var(--pc-subtle); background: rgba(4, 7, 13, 0.8); border: none;
+        border-bottom: 2px solid transparent; cursor: pointer;
+        transition: all 0.3s ease; font-family: inherit;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .role-tab-btn-3d.active {
+        color: var(--pc-cyan);
+        border-bottom-color: var(--pc-cyan);
+        background: rgba(9, 9, 11, 0.9);
+        box-shadow: inset 0 -4px 12px rgba(255, 255, 255,0.15);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+    <div class="auth-card-3d">
+        <div style="padding: 32px 32px 20px; text-align: center; border-bottom: 1px solid var(--pc-border);">
+            <div style="font-size: 36px; filter: drop-shadow(0 0 15px rgba(255, 255, 255,0.5));">⚖️</div>
+            <h1 style="font-size: 26px; font-weight: 800; color: #fff;">Criar Conta Segura</h1>
+            <p style="font-size: 13px; color: var(--pc-muted); margin-top: 4px;">Cadastro protegido com Criptografia LGPD Módulo 11 e 2FA</p>
+        </div>
+
+        <div style="display: flex; border-bottom: 1px solid var(--pc-border);">
+            <button type="button" id="tab-consumer" class="role-tab-btn-3d active" onclick="switchRole('consumer')">
+                👤 Consumidor
+            </button>
+            <button type="button" id="tab-company" class="role-tab-btn-3d" onclick="switchRole('company')">
+                🏢 Empresa / Marca
+            </button>
+        </div>
+
+        <div style="padding: 32px;">
+            <!-- FORM CONSUMIDOR -->
+            <div id="form-consumer-container">
+                {% if consumer_form.non_field_errors %}
+                <div style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+                    {{ consumer_form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{% url 'core:signup' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="role" value="CONSUMER">
+
+                    <div class="form-group">
+                        <label class="form-label">Nome Completo <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.full_name }}
+                        {% if consumer_form.full_name.errors %}
+                        <div style="color:#f87171;font-size:12px;margin-top:4px;">{{ consumer_form.full_name.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CPF <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.cpf }}
+                        {% if consumer_form.cpf.errors %}
+                        <div style="color:#f87171;font-size:12px;margin-top:4px;">{{ consumer_form.cpf.errors.0 }}</div>
+                        {% else %}
+                        <div style="font-size: 11px; color: var(--pc-subtle); margin-top: 4px;">✔ Digite apenas os 11 números do CPF (sem pontos ou traços) • Protegido com Criptografia LGPD</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">E-mail para Verificação 2FA <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.email }}
+                        {% if consumer_form.email.errors %}
+                        <div style="color:#f87171;font-size:12px;margin-top:4px;">{{ consumer_form.email.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Telefone / Celular</label>
+                        <input type="tel" name="phone" id="id_signup_phone"
+                            placeholder="(11) 99999-9999"
+                            value="{{ request.POST.phone }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Senha Forte <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.password }}
+                        {% if consumer_form.password.errors %}
+                        <div style="color:#f87171;font-size:12px;margin-top:4px;">{{ consumer_form.password.errors.0 }}</div>
+                        {% else %}
+                        <div style="font-size:11px;color:var(--pc-subtle);margin-top:4px;">Mín. 8 caracteres • 1 maiúscula • 1 minúscula • 1 número • 1 especial (!@#$%...)</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirmação da Senha <span style="color:#ef4444;">*</span></label>
+                        {{ consumer_form.confirm_password }}
+                        {% if consumer_form.confirm_password.errors %}
+                        <div style="color:#f87171;font-size:12px;margin-top:4px;">{{ consumer_form.confirm_password.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 16px;">
+                        {{ consumer_form.lgpd_consent }}
+                        <label for="id_signup_lgpd_consent" style="font-size: 12px; color: var(--pc-muted); cursor: pointer; line-height: 1.4;">
+                            Concordo com os <a href="{% url 'core:safety_tips' %}" target="_blank" style="color: var(--pc-cyan); text-decoration: underline;">Termos de Privacidade e Proteção de Dados LGPD</a>. <span style="color:#ef4444;">*</span>
+                        </label>
+                    </div>
+                    {% if consumer_form.lgpd_consent.errors %}
+                    <div style="color:#f87171;font-size:12px;margin-bottom:12px;">{{ consumer_form.lgpd_consent.errors.0 }}</div>
+                    {% endif %}
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                        🚀 Finalizar Cadastro de Consumidor
+                    </button>
+                </form>
+            </div>
+
+            <!-- FORM EMPRESA -->
+            <div id="form-company-container" style="display: none;">
+                {% if company_form.non_field_errors %}
+                <div style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+                    {{ company_form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                <form method="POST" enctype="multipart/form-data" action="{% url 'core:signup' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="role" value="COMPANY">
+
+                    <div class="form-group">
+                        <label class="form-label">Razão Social / Nome Fantasia <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CNPJ da Empresa <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.cnpj }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Categoria / Setor Corporativo <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.category }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">E-mail Corporativo <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.email }}
+                        {% if company_form.email.errors %}<div style="color:#f87171;font-size:12px;margin-top:4px;">{{ company_form.email.errors.0 }}</div>{% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Documento de Verificação (PDF/JPG)</label>
+                        {{ company_form.verification_document }}
+                        {% if company_form.verification_document.errors %}<div style="color:#f87171;font-size:12px;margin-top:4px;">{{ company_form.verification_document.errors.0 }}</div>{% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Senha Forte <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.password }}
+                        {% if company_form.password.errors %}<div style="color:#f87171;font-size:12px;margin-top:4px;">{{ company_form.password.errors.0 }}</div>{% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirmação da Senha <span style="color:#ef4444;">*</span></label>
+                        {{ company_form.confirm_password }}
+                        {% if company_form.confirm_password.errors %}<div style="color:#f87171;font-size:12px;margin-top:4px;">{{ company_form.confirm_password.errors.0 }}</div>{% endif %}
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 16px;">
+                        {{ company_form.lgpd_consent }}
+                        <label for="id_company_lgpd_consent" style="font-size: 12px; color: var(--pc-muted); cursor: pointer; line-height: 1.4;">
+                            Declaramos conformidade com os <a href="{% url 'core:safety_tips' %}" target="_blank" style="color: var(--pc-cyan); text-decoration: underline;">Termos Corporativos LGPD</a>. <span style="color:#ef4444;">*</span>
+                        </label>
+                    </div>
+                    {% if company_form.lgpd_consent.errors %}
+                    <div style="color:#f87171;font-size:12px;margin-bottom:12px;">{{ company_form.lgpd_consent.errors.0 }}</div>
+                    {% endif %}
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                        🏢 Finalizar Cadastro de Empresa Auditada
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function switchRole(role) {
+        const btnCons = document.getElementById('tab-consumer');
+        const btnComp = document.getElementById('tab-company');
+        const formCons = document.getElementById('form-consumer-container');
+        const formComp = document.getElementById('form-company-container');
+
+        if (role === 'consumer') {
+            btnCons.classList.add('active');
+            btnComp.classList.remove('active');
+            formCons.style.display = 'block';
+            formComp.style.display = 'none';
+        } else {
+            btnComp.classList.add('active');
+            btnCons.classList.remove('active');
+            formComp.style.display = 'block';
+            formCons.style.display = 'none';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('role') === 'company') {
+            switchRole('company');
+        }
+    });
+</script>
+{% endblock %}
