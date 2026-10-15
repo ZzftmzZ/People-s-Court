@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Central de Suporte 3D - People's Court{% endblock %}
+
+{% block content %}
+<div class="page-container" style="max-width: 1000px; padding: 40px 24px;">
+    <div style="margin-bottom: 30px;">
+        <span class="badge badge-evaluated" style="margin-bottom: 8px;">💬 ATENDIMENTO 24/7</span>
+        <h1 style="font-size: 32px; font-weight: 800; color: #fff;">Central de Suporte e DPO</h1>
+        <p style="font-size: 14px; color: var(--pc-muted);">Precisa de ajuda com uma mediação ou tem dúvidas sobre privacidade LGPD? Abra um chamado diretamente com a nossa equipe.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+        <!-- FORMULÁRIO DE TICKET -->
+        <div class="card" style="padding: 28px;">
+            <h2 style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 16px;">💬 Criar Novo Chamado</h2>
+            <form method="post" style="display: flex; flex-direction: column; gap: 18px;">
+                {% csrf_token %}
+                <div>
+                    <label class="form-label" style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; display: block;">Assunto do Chamado</label>
+                    {{ form.subject }}
+                    {% if form.subject.errors %}
+                        <div style="color: #f87171; font-size: 12px; margin-top: 4px;">{{ form.subject.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="form-label" style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; display: block;">Mensagem Detalhada</label>
+                    {{ form.message }}
+                    {% if form.message.errors %}
+                        <div style="color: #f87171; font-size: 12px; margin-top: 4px;">{{ form.message.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn-primary" style="padding: 14px; font-size: 14px; justify-content: center;">
+                    🚀 Enviar Chamado de Suporte
+                </button>
+            </form>
+        </div>
+
+        <!-- LISTA DE CHAMADOS -->
+        <div>
+            <h2 style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 16px;">📋 Meus Chamados Abertos</h2>
+            {% if tickets %}
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    {% for ticket in tickets %}
+                        <div class="card" style="padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h3 style="font-size: 16px; font-weight: 700; color: #fff;">{{ ticket.subject }}</h3>
+                                <span class="badge {% if ticket.status == 'OPEN' %}badge-responded{% else %}badge-evaluated{% endif %}">
+                                    {{ ticket.get_status_display }}
+                                </span>
+                            </div>
+                            <p style="font-size: 13px; color: var(--pc-muted); line-height: 1.6; margin-bottom: 10px;">{{ ticket.message }}</p>
+                            <span style="font-size: 11px; color: var(--pc-subtle);">Aberto em: {{ ticket.created_at|date:"d/m/Y H:i" }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="card" style="padding: 40px; text-align: center; color: var(--pc-muted);">
+                    Você ainda não possui chamados de suporte abertos.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

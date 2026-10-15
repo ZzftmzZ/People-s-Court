@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label class="form-label" for="{{ field.id_for_label }}">{{ label }}{% if required %} <span style="color:#ef4444;" aria-hidden="true">*</span>{% endif %}</label>
+    {{ field }}
+    {% if field.errors %}
+    <div class="field-error" role="alert" style="color:#f87171;font-size:12px;margin-top:4px;">{{ field.errors.0 }}</div>
+    {% elif hint %}
+    <div class="field-hint" style="font-size:11px;color:var(--pc-subtle);margin-top:4px;">{{ hint }}</div>
+    {% endif %}
+</div>

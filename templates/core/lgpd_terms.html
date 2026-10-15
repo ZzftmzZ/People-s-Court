@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Termos de Uso e Privacidade (LGPD) - People's Court{% endblock %}
+
+{% block content %}
+<div style="max-width: 860px; margin: 0 auto; padding: 48px 24px;">
+    <h1 style="font-size: 30px; font-weight: 800; color: #fff; margin-bottom: 8px;">Termos de Uso e Política de Privacidade</h1>
+    <p style="font-size: 13px; color: var(--pc-muted); margin-bottom: 28px;">Lei Geral de Proteção de Dados (Lei nº 13.709/2018) • Modelo inicial — revisar com assessoria jurídica antes da publicação oficial.</p>
+
+    <nav style="display:flex; gap:12px; margin-bottom: 28px;">
+        <a href="#consumidor" class="btn-ghost">Consumidor</a>
+        <a href="#corporativo" class="btn-ghost">Empresa / Marca</a>
+    </nav>
+
+    <section id="consumidor" class="card glass-panel-3d" style="padding: 28px; margin-bottom: 24px; scroll-margin-top: 90px;">
+        <h2 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px;">👤 Termos para Consumidores</h2>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Dados que coletamos</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">Nome completo, CPF, e-mail, telefone (opcional), nome de usuário e conteúdo das reclamações que você registra. O CPF é usado apenas para identificar você e evitar cadastros duplicados; publicamente ele é exibido mascarado.</p>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Para que usamos</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">Criar e proteger sua conta, permitir o registro e acompanhamento de reclamações, mediar o contato com empresas e cumprir obrigações legais (base legal: execução de contrato, consentimento e obrigação legal — Art. 7º LGPD).</p>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Seus direitos (Art. 18 LGPD)</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">Confirmação de tratamento, acesso, correção, anonimização, portabilidade e eliminação dos dados, e revogação do consentimento. Você pode exportar ou anonimizar seus dados no painel da sua conta (“Exportar meus dados” / “Anonimizar meus dados”).</p>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Conteúdo publicado</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">Reclamações são públicas. Você é responsável pela veracidade do conteúdo. Conteúdo ofensivo, falso ou com dados pessoais de terceiros pode ser suspenso e analisado conforme o fluxo de denúncia e de remoção da plataforma (Marco Civil da Internet, Art. 19).</p>
+    </section>
+
+    <section id="corporativo" class="card glass-panel-3d" style="padding: 28px; margin-bottom: 24px; scroll-margin-top: 90px;">
+        <h2 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px;">🏢 Termos Corporativos</h2>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Dados da empresa</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">Razão social/nome fantasia, CNPJ, setor, e-mail corporativo e documento de comprovação (Contrato Social ou Cartão CNPJ). O documento é usado exclusivamente para verificar a autenticidade da empresa.</p>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Responsabilidades da empresa</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">A empresa declara que os dados e o documento enviados são verdadeiros e que está autorizada a representar a marca. Ao responder reclamações, compromete-se a tratar os dados pessoais dos consumidores apenas para resolver o caso, em conformidade com a LGPD.</p>
+        <h3 style="color:#fff; margin: 14px 0 6px;">Reputação e moderação</h3>
+        <p style="color: var(--pc-muted); line-height: 1.7;">A reputação exibida é calculada a partir das reclamações, respostas e avaliações. Empresas podem contestar conteúdo pelo pedido de remoção (Notice and Takedown); o conteúdo é suspenso preventivamente, preservado e analisado.</p>
+    </section>
+
+    <section class="card glass-panel-3d" style="padding: 28px;">
+        <h2 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px;">Contato do Encarregado (DPO)</h2>
+        <p style="color: var(--pc-muted); line-height: 1.7;">Dúvidas ou solicitações sobre seus dados: <a href="{% url 'core:support' %}" style="color: var(--pc-cyan); text-decoration: underline;">abra um chamado no Suporte</a>.</p>
+        <p style="color: var(--pc-subtle); font-size: 12px; margin-top: 12px;">Compartilhamento: não vendemos dados pessoais. Dados podem ser compartilhados apenas com provedores de infraestrutura necessários à operação e por determinação legal.</p>
+    </section>
+</div>
+{% endblock %}

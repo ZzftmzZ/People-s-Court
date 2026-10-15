@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cadastrar-se 3D - People's Court{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-card-3d {
+        background: rgba(9, 9, 11, 0.75);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--pc-border-glow);
+        border-radius: 20px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 560px;
+        box-shadow: var(--pc-glass-shadow), var(--pc-glow-cyan);
+    }
+    .role-tab-btn-3d {
+        flex: 1; padding: 18px; font-size: 14px; font-weight: 800;
+        color: var(--pc-subtle); background: rgba(4, 7, 13, 0.8); border: none;
+        border-bottom: 2px solid transparent; cursor: pointer;
+        transition: all 0.3s ease; font-family: inherit;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .role-tab-btn-3d.active {
+        color: var(--pc-cyan);
+        border-bottom-color: var(--pc-cyan);
+        background: rgba(9, 9, 11, 0.9);
+        box-shadow: inset 0 -4px 12px rgba(255, 255, 255,0.15);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+    <div class="auth-card-3d">
+        <div style="padding: 32px 32px 20px; text-align: center; border-bottom: 1px solid var(--pc-border);">
+            <div style="font-size: 36px; filter: drop-shadow(0 0 15px rgba(255, 255, 255,0.5));">⚖️</div>
+            <h1 style="font-size: 26px; font-weight: 800; color: #fff;">Criar Conta Segura</h1>
+            <p style="font-size: 13px; color: var(--pc-muted); margin-top: 4px;">Cadastro com validação de CPF/CNPJ e proteção de dados conforme a LGPD</p>
+        </div>
+
+        <div style="display: flex; border-bottom: 1px solid var(--pc-border);">
+            <button type="button" id="tab-consumer" class="role-tab-btn-3d {% if active_role != 'COMPANY' %}active{% endif %}" onclick="switchRole('consumer')">
+                👤 Consumidor
+            </button>
+            <button type="button" id="tab-company" class="role-tab-btn-3d {% if active_role == 'COMPANY' %}active{% endif %}" onclick="switchRole('company')">
+                🏢 Empresa / Marca
+            </button>
+        </div>
+
+        <div style="padding: 32px;">
+            <!-- FORM CONSUMIDOR -->
+            <div id="form-consumer-container" style="display: {% if active_role == 'COMPANY' %}none{% else %}block{% endif %};">
+                {% if consumer_form.non_field_errors %}
+                <div class="field-error" role="alert" style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+                    {{ consumer_form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{% url 'core:signup' %}" novalidate>
+                    {% csrf_token %}
+                    <input type="hidden" name="role" value="CONSUMER">
+
+                    {% include 'core/_field.html' with field=consumer_form.full_name label='Nome Completo' required=True %}
+                    {% include 'core/_field.html' with field=consumer_form.username label='Nome de Usuário' required=True hint='Será usado para entrar (você também poderá entrar com o e-mail).' %}
+                    {% include 'core/_field.html' with field=consumer_form.cpf label='CPF' required=True hint='Seu CPF aparece mascarado publicamente (LGPD).' %}
+                    {% include 'core/_field.html' with field=consumer_form.email label='E-mail' required=True %}
+                    {% include 'core/_field.html' with field=consumer_form.phone label='Telefone / Celular' %}
+                    {% include 'core/_field.html' with field=consumer_form.password label='Senha Forte' required=True hint='Mín. 8 caracteres • 1 maiúscula • 1 minúscula • 1 número • 1 especial (!@#$%...)' %}
+                    {% include 'core/_field.html' with field=consumer_form.confirm_password label='Confirmação da Senha' required=True %}
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            {{ consumer_form.lgpd_consent }}
+                            <label for="id_signup_lgpd_consent" style="font-size: 12px; color: var(--pc-muted); cursor: pointer; line-height: 1.4;">
+                                Concordo com os <a href="{% url 'core:lgpd_terms' %}#consumidor" target="_blank" rel="noopener" style="color: var(--pc-cyan); text-decoration: underline;">Termos de Uso e Política de Privacidade (LGPD)</a>. <span style="color:#ef4444;" aria-hidden="true">*</span>
+                            </label>
+                        </div>
+                        {% if consumer_form.lgpd_consent.errors %}
+                        <div class="field-error" role="alert" style="color:#f87171;font-size:12px;margin-top:6px;">{{ consumer_form.lgpd_consent.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                        🚀 Finalizar Cadastro de Consumidor
+                    </button>
+                </form>
+            </div>
+
+            <!-- FORM EMPRESA -->
+            <div id="form-company-container" style="display: {% if active_role == 'COMPANY' %}block{% else %}none{% endif %};">
+                {% if company_form.non_field_errors %}
+                <div class="field-error" role="alert" style="background: rgba(127, 29, 29, 0.8); border: 1px solid #ef4444; border-radius: 10px; padding: 12px; color: #fecaca; font-size: 13px; margin-bottom: 20px;">
+                    {{ company_form.non_field_errors.0 }}
+                </div>
+                {% endif %}
+
+                <form method="POST" enctype="multipart/form-data" action="{% url 'core:signup' %}" novalidate>
+                    {% csrf_token %}
+                    <input type="hidden" name="role" value="COMPANY">
+
+                    {% include 'core/_field.html' with field=company_form.company_name label='Razão Social / Nome Fantasia' required=True %}
+                    {% include 'core/_field.html' with field=company_form.username label='Nome de Usuário' required=True hint='Será usado para entrar (você também poderá entrar com o e-mail).' %}
+                    {% include 'core/_field.html' with field=company_form.cnpj label='CNPJ da Empresa' required=True %}
+                    {% include 'core/_field.html' with field=company_form.category label='Categoria / Setor Corporativo' required=True %}
+                    {% include 'core/_field.html' with field=company_form.email label='E-mail Corporativo' required=True %}
+                    {% include 'core/_field.html' with field=company_form.verification_document label='Documento de Verificação (PDF/JPG/PNG)' required=True hint='Contrato Social ou Cartão CNPJ • até 5MB.' %}
+                    {% include 'core/_field.html' with field=company_form.password label='Senha Forte' required=True hint='Mín. 8 caracteres • 1 maiúscula • 1 minúscula • 1 número • 1 especial (!@#$%...)' %}
+                    {% include 'core/_field.html' with field=company_form.confirm_password label='Confirmação da Senha' required=True %}
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            {{ company_form.lgpd_consent }}
+                            <label for="id_company_lgpd_consent" style="font-size: 12px; color: var(--pc-muted); cursor: pointer; line-height: 1.4;">
+                                Declaramos conformidade com os <a href="{% url 'core:lgpd_terms' %}#corporativo" target="_blank" rel="noopener" style="color: var(--pc-cyan); text-decoration: underline;">Termos Corporativos e Política de Privacidade (LGPD)</a>. <span style="color:#ef4444;" aria-hidden="true">*</span>
+                            </label>
+                        </div>
+                        {% if company_form.lgpd_consent.errors %}
+                        <div class="field-error" role="alert" style="color:#f87171;font-size:12px;margin-top:6px;">{{ company_form.lgpd_consent.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 15px; justify-content: center; margin-top: 10px;">
+                        🏢 Finalizar Cadastro de Empresa
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'vendor/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.mask.min.js' %}"></script>
+<script>
+    function switchRole(role) {
+        const isCons = role === 'consumer';
+        document.getElementById('tab-consumer').classList.toggle('active', isCons);
+        document.getElementById('tab-company').classList.toggle('active', !isCons);
+        document.getElementById('form-consumer-container').style.display = isCons ? 'block' : 'none';
+        document.getElementById('form-company-container').style.display = isCons ? 'none' : 'block';
+    }
+
+    $(function () {
+        // Máscaras (jQuery Mask Plugin)
+        $('#id_signup_cpf').mask('000.000.000-00');
+        $('#id_company_cnpj').mask('00.000.000/0000-00');
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        };
+        $('#id_signup_phone').mask(SPMaskBehavior, {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        });
+
+        // Some a mensagem de erro assim que o usuário começa a corrigir o campo
+        $('form').on('input change', 'input, select, textarea', function () {
+            $(this).closest('.form-group').find('.field-error').remove();
+            $(this).removeAttr('aria-invalid');
+        });
+        $('.field-error').closest('.form-group').find('input, select, textarea').attr('aria-invalid', 'true');
+    });
+</script>
+{% endblock %}

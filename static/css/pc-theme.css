@@ -1,0 +1,75 @@
+/* People's Court — camada de tema dark monocromático (preto / branco / cinzas).
+   Carregado depois do <style> do base.html: refina tokens, acessibilidade e responsividade. */
+
+:root {
+    --pc-subtle: #8b8b95;            /* ≥ 5:1 sobre #050505 (WCAG AA) */
+    --pc-glow-cyan: var(--pc-glow-white);  /* alias legado → monocromático */
+}
+
+/* ── Acessibilidade ── */
+.skip-link {
+    position: absolute; left: 16px; top: -64px; z-index: 10000;
+    background: #fff; color: #000; padding: 10px 18px; border-radius: 8px;
+    font-weight: 800; font-size: 14px; transition: top .2s ease;
+}
+.skip-link:focus { top: 12px; }
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+::selection { background: #fff; color: #000; }
+
+/* scrollbar discreta */
+html { scrollbar-color: #3f3f46 #050505; scrollbar-width: thin; }
+
+/* ── Revelação GSAP (só ativa se JS + GSAP carregarem e sem prefers-reduced-motion) ── */
+.pc-motion [data-pc-reveal]:not([data-pc-done]) {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+}
+
+/* ── Tilt 3D (pointer fino) ── */
+.pc-tilt {
+    transform: perspective(900px) rotateX(var(--pc-rx, 0deg)) rotateY(var(--pc-ry, 0deg));
+    will-change: transform;
+}
+.card.pc-tilt:hover {
+    transform: perspective(900px) rotateX(var(--pc-rx, 0deg)) rotateY(var(--pc-ry, 0deg)) translateY(-4px);
+}
+
+/* ── Canvas de fundo: nunca captura clique, nunca cria scroll ── */
+#canvas-3d-bg { contain: strict; }
+
+/* ── Responsividade ── */
+@media (max-width: 768px) {
+    .top-bar-inner { flex-wrap: wrap; gap: 4px; font-size: 11px; }
+    .navbar-inner { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 12px; gap: 12px; }
+    .navbar-search { display: flex; order: 3; flex: 1 1 100%; max-width: none; }
+    .navbar-actions { gap: 8px; flex-wrap: wrap; }
+    .user-greeting { display: none; }
+    .page-container { padding: 24px 16px; }
+    #messages-container { right: 12px; left: 12px; width: auto; max-width: none; top: 110px; }
+}
+@media (max-width: 480px) {
+    .btn-ghost, .btn-primary { padding: 8px 14px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Movimento reduzido: desliga animações decorativas ── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+    .pc-tilt, .card.pc-tilt:hover { transform: none; }
+}
+
+/* ── Impressão (certificado digital) ── */
+@media print {
+    #canvas-3d-bg, .top-bar, .navbar, .category-bar, .footer, .skip-link { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+}
