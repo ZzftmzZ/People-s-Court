@@ -338,3 +338,4 @@ As configurações atuais são voltadas ao **desenvolvimento**. Antes de publica
 Feito com 🖤 e Django.
 
 </div>
+
