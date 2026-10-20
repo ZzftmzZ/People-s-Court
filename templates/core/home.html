@@ -191,22 +191,22 @@
         <!-- Search Bar 3D -->
         <form class="hero-search-3d" action="{% url 'core:search_companies' %}" method="GET">
             <input type="search" name="q" id="hero-search-input" aria-label="Pesquisar empresa" placeholder="Pesquise qualquer empresa (ex: Nubank, Itaú, Magalu)..." autocomplete="off">
-            <button type="submit">Buscar 3D 🔍</button>
+            <button type="submit">Buscar Empresa 🔍</button>
         </form>
 
         <!-- Hero Stats -->
         <div class="hero-stats-3d">
             <div class="stat-card-3d">
-                <strong>LGPD</strong>
-                <span>Privacidade & Direitos</span>
+                <strong>{{ total_companies }}</strong>
+                <span>Empresas Auditadas</span>
             </div>
             <div class="stat-card-3d">
-                <strong>Módulo 11</strong>
-                <span>Validação Antifraude</span>
+                <strong>{{ total_complaints }}</strong>
+                <span>Reclamações Registradas</span>
             </div>
             <div class="stat-card-3d">
-                <strong>Argon2</strong>
-                <span>Hash de Senhas</span>
+                <strong>{{ resolved_count }}</strong>
+                <span>Casos Resolvidos</span>
             </div>
             <div class="stat-card-3d">
                 <strong>SHA-256</strong>

@@ -4,6 +4,7 @@
 :root {
     --pc-subtle: #8b8b95;            /* ≥ 5:1 sobre #050505 (WCAG AA) */
     --pc-glow-cyan: var(--pc-glow-white);  /* alias legado → monocromático */
+    accent-color: #ffffff;           /* estiliza checkboxes, radios e range nativos */
 }
 
 /* ── Acessibilidade ── */
@@ -45,16 +46,21 @@ html { scrollbar-color: #3f3f46 #050505; scrollbar-width: thin; }
 /* ── Responsividade ── */
 @media (max-width: 768px) {
     .top-bar-inner { flex-wrap: wrap; gap: 4px; font-size: 11px; }
-    .navbar-inner { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 12px; gap: 12px; }
-    .navbar-search { display: flex; order: 3; flex: 1 1 100%; max-width: none; }
+    .navbar-inner { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 12px; gap: 8px; }
+    /* Busca aparece abaixo do logo em mobile, ocupando linha inteira */
+    .navbar-search { display: flex !important; order: 3; flex: 1 1 100%; max-width: none; }
     .navbar-actions { gap: 8px; flex-wrap: wrap; }
     .user-greeting { display: none; }
     .page-container { padding: 24px 16px; }
     #messages-container { right: 12px; left: 12px; width: auto; max-width: none; top: 110px; }
+    /* Categoria: alvos de toque maiores em mobile */
+    .cat-link { padding: 14px 14px; min-height: 44px; display: inline-flex; align-items: center; }
 }
 @media (max-width: 480px) {
-    .btn-ghost, .btn-primary { padding: 8px 14px; }
+    .btn-ghost, .btn-primary { padding: 8px 14px; font-size: 12px; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .hero-stats-3d { gap: 12px; }
+    .stat-card-3d { padding: 12px 18px; }
 }
 
 /* ── Movimento reduzido: desliga animações decorativas ── */

@@ -10,13 +10,15 @@ class EnterpriseSecurityHeadersMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         
-        # CSP permitindo Three.js, ChartJS, Google Fonts e FontAwesome
+        # CSP permitindo Three.js, GSAP, Google Fonts (worker-src e media-src adicionados para WebGL)
         csp_directives = (
             "default-src 'self'; "
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com; "
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; "
             "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; "
             "img-src 'self' data: https: blob:; "
+            "media-src 'self' blob:; "
+            "worker-src 'self' blob:; "
             "connect-src 'self' https://api.duckduckgo.com https://pt.wikipedia.org https://fonts.googleapis.com https://fonts.gstatic.com; "
             "frame-ancestors 'none'; "
             "base-uri 'self'; "
@@ -28,7 +30,7 @@ class EnterpriseSecurityHeadersMiddleware:
         response['X-Frame-Options'] = 'DENY'
         response['Referrer-Policy'] = 'strict-origin-when-cross-origin'
         response['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=(), payment=()'
-        response['X-XSS-Protection'] = '1; mode=block'
+        # X-XSS-Protection removido: deprecado em navegadores modernos e pode causar problemas
         
         return response
 

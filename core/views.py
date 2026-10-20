@@ -122,8 +122,14 @@ def home(request):
         resolved=Count('id', filter=Q(status=Complaint.Status.EVALUATED, is_resolved=True)),
     )
     total_companies = CompanyProfile.objects.count()
+    # FIX: top_companies era passado ao template mas ausente na view (loop silencioso vazio)
+    top_companies = (
+        CompanyProfile.objects.all()
+        .order_by('-risk_score', 'name')[:8]
+    )
     return render(request, 'core/home.html', {
         'recent_complaints': recent_complaints,
+        'top_companies': top_companies,
         'total_companies': total_companies,
         'total_complaints': complaint_stats['total'],
         'resolved_count': complaint_stats['resolved'],
