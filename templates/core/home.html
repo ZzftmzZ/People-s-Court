@@ -271,8 +271,8 @@
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px;">
         
         <!-- RECENT COMPLAINTS -->
-        <div>
-            <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">📌 Reclamações Recentes em Mediação</h3>
+        <section aria-labelledby="heading-recent-complaints">
+            <h2 id="heading-recent-complaints" style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">📌 Reclamações Recentes em Mediação</h2>
             <div style="display: flex; flex-direction: column; gap: 16px;">
                 {% for c in recent_complaints %}
                 <div class="card" style="padding: 20px;">
@@ -282,9 +282,9 @@
                         </span>
                         <small style="color: var(--pc-subtle); font-size: 12px;">{{ c.created_at|timesince }} atrás</small>
                     </div>
-                    <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px;">
                         <a href="{% url 'core:complaint_detail' c.id %}" style="color: inherit;">{{ c.title }}</a>
-                    </h4>
+                    </h3>
                     <div style="font-size: 13px; color: var(--pc-muted); margin-bottom: 12px;">
                         Empresa: <strong style="color: var(--pc-cyan);">{{ c.company.name }}</strong>
                     </div>
@@ -296,17 +296,17 @@
                 </div>
                 {% endfor %}
             </div>
-        </div>
+        </section>
 
         <!-- FEATURED COMPANIES -->
-        <div>
-            <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">🏆 Reputação Corporativa Auditada</h3>
+        <section aria-labelledby="heading-top-companies">
+            <h2 id="heading-top-companies" style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">🏆 Reputação Corporativa Auditada</h2>
             <div style="display: flex; flex-direction: column; gap: 16px;">
                 {% for comp in top_companies %}
                 <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <h4 style="font-size: 17px; font-weight: 800; color: #fff;">{{ comp.name }}</h4>
-                        <span style="font-size: 13px; color: var(--pc-subtle);">{{ comp.category }}</span>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">{{ comp.name }}</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">{{ comp.category }}</span>
                     </div>
                     <div style="text-align: right;">
                         <div class="rep-badge {% if comp.fraud_alert %}rep-fraud{% elif comp.reputation_score >= 8.0 %}rep-ra1000{% elif comp.reputation_score >= 7.0 %}rep-bom{% elif comp.reputation_score >= 5.0 %}rep-regular{% else %}rep-ruim{% endif %}">

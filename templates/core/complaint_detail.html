@@ -171,7 +171,7 @@
                     {% if can_company_respond %}
                     <div style="background: rgba(9, 9, 11, 0.8); border: 1px solid var(--pc-blue); border-radius: 12px; padding: 24px; margin-top: 24px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                            <h4 style="font-size: 16px; font-weight: 800; color: var(--pc-blue);">🏢 Resposta Institucional da Empresa</h4>
+                            <h3 style="font-size: 16px; font-weight: 800; color: var(--pc-blue);">🏢 Resposta Institucional da Empresa</h3>
                             <button id="ai-suggest-btn" class="btn-ghost" style="font-size: 12px; border-color: var(--pc-cyan); color: var(--pc-cyan);">
                                 🤖 Sugerir Resposta via IA
                             </button>
@@ -188,7 +188,7 @@
                     <!-- CONSUMER REJOINDER ACTION FORM -->
                     {% if can_consumer_rejoinder %}
                     <div style="background: rgba(9, 9, 11, 0.8); border: 1px solid var(--pc-violet); border-radius: 12px; padding: 24px; margin-top: 24px;">
-                        <h4 style="font-size: 16px; font-weight: 800; color: var(--pc-violet); margin-bottom: 14px;">👤 Contrarresposta do Consumidor</h4>
+                        <h3 style="font-size: 16px; font-weight: 800; color: var(--pc-violet); margin-bottom: 14px;">👤 Contrarresposta do Consumidor</h3>
                         <form method="POST" action="{% url 'core:consumer_rejoinder' complaint.id %}">
                             {% csrf_token %}
                             <textarea name="content" class="form-control textarea" placeholder="Insira seus comentários em relação à resposta da empresa..." required></textarea>
@@ -200,7 +200,7 @@
                     <!-- FINAL EVALUATION ACTION FORM -->
                     {% if can_evaluate %}
                     <div style="background: rgba(6, 78, 59, 0.4); border: 1px solid #10b981; border-radius: 12px; padding: 24px; margin-top: 24px;">
-                        <h4 style="font-size: 16px; font-weight: 800; color: #34d399; margin-bottom: 14px;">⭐ Avaliação Final da Solução</h4>
+                        <h3 style="font-size: 16px; font-weight: 800; color: #34d399; margin-bottom: 14px;">⭐ Avaliação Final da Solução</h3>
                         <a href="{% url 'core:evaluate_complaint' complaint.id %}" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669);">
                             Avaliar Empresa & Encerrar Caso →
                         </a>

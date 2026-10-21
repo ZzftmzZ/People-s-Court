@@ -17,14 +17,14 @@
             <form method="post" style="display: flex; flex-direction: column; gap: 18px;">
                 {% csrf_token %}
                 <div>
-                    <label class="form-label" style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; display: block;">Assunto do Chamado</label>
+                    <label class="form-label" for="{{ form.subject.id_for_label }}" style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; display: block;">Assunto do Chamado</label>
                     {{ form.subject }}
                     {% if form.subject.errors %}
                         <div style="color: #f87171; font-size: 12px; margin-top: 4px;">{{ form.subject.errors.0 }}</div>
                     {% endif %}
                 </div>
                 <div>
-                    <label class="form-label" style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; display: block;">Mensagem Detalhada</label>
+                    <label class="form-label" for="{{ form.message.id_for_label }}" style="font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; display: block;">Mensagem Detalhada</label>
                     {{ form.message }}
                     {% if form.message.errors %}
                         <div style="color: #f87171; font-size: 12px; margin-top: 4px;">{{ form.message.errors.0 }}</div>

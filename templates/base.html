@@ -38,7 +38,14 @@
       }
     }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Performance & Font Preconnects (Lighthouse / Core Web Vitals) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+    </noscript>
     
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
@@ -664,7 +671,7 @@
     <footer class="footer">
         <div class="footer-main">
             <div class="footer-col">
-                <div class="footer-title">Consumidores</div>
+                <h3 class="footer-title">Consumidores</h3>
                 <ul>
                     <li><a href="{% url 'core:search_companies' %}">Buscar Empresas</a></li>
                     <li><a href="{% url 'core:signup' %}">Criar Conta Segura</a></li>
@@ -673,7 +680,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <div class="footer-title">Empresas & SSO</div>
+                <h3 class="footer-title">Empresas & SSO</h3>
                 <ul>
                     <li><a href="{% url 'core:signup' %}?role=company">Cadastrar Marca</a></li>
                     <li><a href="{% url 'core:sso_login' 'azure' %}">Portal Enterprise Azure AD</a></li>
@@ -681,7 +688,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <div class="footer-title">Conformidade & LGPD</div>
+                <h3 class="footer-title">Conformidade & LGPD</h3>
                 <ul>
                     <li><a href="{% url 'core:safety_tips' %}">Direito ao Esquecimento</a></li>
                     <li><a href="{% url 'core:news' %}">Combate a Golpes</a></li>
@@ -689,7 +696,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <div class="footer-title">Segurança</div>
+                <h3 class="footer-title">Segurança</h3>
                 <ul>
                     <li><span style="color: var(--pc-white); font-weight: 700;">✔ Senhas com hash Argon2</span></li>
                     <li><span style="color: var(--pc-muted); font-weight: 700;">✔ Selo SHA-256 nos acordos</span></li>
