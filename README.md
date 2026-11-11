@@ -14,6 +14,8 @@
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ### 🌐 Aceda à Aplicação
 
 <a href="https://people-s-court.onrender.com/">
@@ -28,6 +30,8 @@
 </p>
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 </div>
 **Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.**
@@ -44,6 +48,8 @@
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ## 📖 Sobre o Projeto
 
 O **People's Court** conecta consumidores e empresas em um ambiente transparente, seguro e visualmente impressionante para registrar, responder e avaliar reclamações. A plataforma foi construída com foco em:
@@ -54,6 +60,8 @@ O **People's Court** conecta consumidores e empresas em um ambiente transparente
 - 🎨 **Interface 3D** Dark Minimalista com Three.js + GSAP
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 🌟 Recursos Principais
 
@@ -72,6 +80,8 @@ O **People's Court** conecta consumidores e empresas em um ambiente transparente
 | 📋 **Auditoria SHA-256** | Todo evento crítico registrado em `AuditLog` com hash de integridade imutável. |
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 📋 Requisitos do Sistema
 
@@ -123,6 +133,8 @@ O **People's Court** conecta consumidores e empresas em um ambiente transparente
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
@@ -162,6 +174,8 @@ O **People's Court** conecta consumidores e empresas em um ambiente transparente
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ## 🚀 Guia de Execução
 
 Primeiro, clone o repositório e entre na pasta do projeto:
@@ -174,6 +188,8 @@ cd People-s-Court
 Escolha uma das duas opções abaixo.
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ### 🅰️ Opção A: Execução Nativa (Sem Docker)
 
@@ -265,6 +281,8 @@ Acesse: **http://127.0.0.1:8000**
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ### 🅱️ Opção B: Execução com Docker (Docker Compose)
 
 **Pré-requisito:** [Docker](https://docs.docker.com/get-docker/) com Docker Compose (Docker Desktop no Windows e macOS; Docker Engine no Linux).
@@ -310,6 +328,8 @@ docker-compose down -v
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ## 🧪 Testes Automatizados
 
 Com o ambiente configurado (Opção A com o `.venv` ativo, ou dentro do container), execute:
@@ -327,6 +347,8 @@ docker-compose exec web python manage.py test core
 A suíte cobre validação de formulários, permissões de acesso, cálculo de reputação, paginação, mensagens do sistema, validação de CPF, política de senhas e máscara LGPD.
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 📁 Estrutura do Projeto
 
@@ -349,6 +371,8 @@ People-s-Court/
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 ## ⚠️ Aviso para Produção
 
 As configurações atuais são voltadas ao **desenvolvimento**. Antes de publicar:
@@ -361,6 +385,8 @@ As configurações atuais são voltadas ao **desenvolvimento**. Antes de publica
 
 ---
 
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+
 <div align="center">
 
 Feito com 🖤 e Django.
@@ -371,6 +397,8 @@ Feito com 🖤 e Django.
 <!-- Dummy activity commit: 2026-11-11T20:23:37Z -->
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 🤖 Auto‑commit de atividade
 
@@ -385,3 +413,5 @@ Esses commits adicionam a seguinte linha ao `README.md`:
 Isso ajuda a mostrar aos recrutadores e empresas que o projeto está sendo mantido.
 
 ---
+
+<!-- Atualização automática: 2026-11-11T20:48:30Z -->
