@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People's Court 3D - Mediação Corporativa, LGPD e Antifraude</title>
+    <meta name="description" content="Plataforma 3D de Resolução de Conflitos Corporativos, Auditoria LGPD Imutável e Transparência.">
+    <meta name="keywords" content="reclamações, direitos do consumidor, mediação de conflitos, LGPD, reputação de empresas, suporte ao consumidor, mediação corporativa">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="People's Court">
+    <link rel="canonical" href="https://people-s-court.onrender.com/">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://people-s-court.onrender.com/">
+    <meta property="og:title" content="People's Court 3D - Plataforma de Resolução de Conflitos">
+    <meta property="og:description" content="Resolva conflitos de forma segura com proteção de dados (LGPD), mediação por IA e reputação transparente de empresas.">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="People's Court">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="People's Court 3D">
+    <meta name="twitter:description" content="Mediação de conflitos corporativos e defesa dos direitos do consumidor com tecnologia LGPD.">
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "People's Court",
+      "url": "https://people-s-court.onrender.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://people-s-court.onrender.com/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <!-- Performance & Font Preconnects (Lighthouse / Core Web Vitals) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+    </noscript>
+    
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+    <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('pc-motion');</script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            /* ── DARK MINIMALIST MONOCHROME 3D PALETTE (MILWEB / SPYLT GSAP STYLE) ── */
+            --pc-black:     #000000;
+            --pc-bg:        #050505;
+            --pc-surface:   rgba(24, 24, 27, 0.75);
+            --pc-surface-2: rgba(39, 39, 42, 0.85);
+            --pc-border:    #27272a;
+            --pc-border-glow: #52525b;
+            --pc-text:      #ffffff;
+            --pc-muted:     #a1a1aa;
+            --pc-subtle:    #8b8b95;
+            --pc-white:     #ffffff;
+
+            --pc-cyan:      #ffffff;
+            --pc-violet:    #a1a1aa;
+            --pc-gold:      #e4e4e7;
+            --pc-green:     #22c55e;
+            --pc-red:       #ef4444;
+            --pc-yellow:    #f59e0b;
+            --pc-blue:      #3b82f6;
+
+            --pc-glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            --pc-glow-white: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ── GLOBAL FORM INPUT STYLING (HIGH CONTRAST DARK 3D) ── */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="file"],
+        select,
+        textarea,
+        .form-control {
+            width: 100% !important;
+            background: #09090b !important;
+            color: #ffffff !important;
+            border: 1px solid #3f3f46 !important;
+            border-radius: 10px !important;
+            padding: 14px 16px !important;
+            font-size: 14px !important;
+            font-family: inherit !important;
+            outline: none !important;
+            transition: all 0.3s ease !important;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+            display: block !important;
+            box-sizing: border-box !important;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus,
+        .form-control:focus {
+            border-color: #ffffff !important;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25), inset 0 2px 6px rgba(0, 0, 0, 0.7) !important;
+            background: #121215 !important;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #8b8b95 !important;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+            background-color: var(--pc-bg);
+            color: var(--pc-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ── 3D CANVAS BACKGROUND ── */
+        #canvas-3d-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        a { text-decoration: none; color: inherit; transition: all 0.25s ease; }
+        button { cursor: pointer; font-family: inherit; }
+
+        /* ─── TOP BAR ─── */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            color: var(--pc-muted);
+            font-size: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--pc-border);
+            z-index: 101;
+        }
+        .top-bar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar a { color: var(--pc-muted); }
+        .top-bar a:hover { color: var(--pc-white); text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        .top-bar-links { display: flex; gap: 24px; }
+
+        /* ─── NAVBAR GLASS 3D (DARK MONOCHROME) ─── */
+        .navbar {
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--pc-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+        }
+        .navbar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            height: 72px;
+        }
+        .navbar-logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--pc-white);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-logo span {
+            color: var(--pc-muted);
+            font-weight: 500;
+        }
+        .navbar-logo-icon {
+            font-size: 26px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
+            animation: float3d 3s ease-in-out infinite;
+        }
+        @keyframes float3d {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(4deg); }
+        }
+
+        .navbar-search {
+            flex: 1;
+            max-width: 540px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--pc-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .navbar-search:focus-within {
+            border-color: var(--pc-white);
+            box-shadow: var(--pc-glow-white);
+            transform: translateY(-1px);
+        }
+        .navbar-search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--pc-text);
+            background: transparent;
+        }
+        .navbar-search input::placeholder { color: var(--pc-subtle); }
+        .navbar-search button {
+            background: var(--pc-surface-2);
+            color: var(--pc-white);
+            border: none;
+            border-left: 1px solid var(--pc-border);
+            padding: 12px 22px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .navbar-search button:hover {
+            background: var(--pc-white);
+            color: var(--pc-black);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-left: auto;
+        }
+
+        /* ── BUTTONS MONOCHROME 3D ── */
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--pc-border);
+            color: var(--pc-text);
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-ghost:hover {
+            border-color: var(--pc-white);
+            color: var(--pc-white);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #ffffff;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-primary:hover {
+            background: #e4e4e7;
+            border-color: #e4e4e7;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.35);
+        }
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-danger:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+        }
+
+        .user-greeting { font-size: 13px; color: var(--pc-muted); }
+        .user-greeting strong { color: var(--pc-white); font-weight: 700; }
+
+        /* ─── CATEGORY BAR GLASS ─── */
+        .category-bar {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--pc-border);
+        }
+        .category-bar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+        .category-bar-inner::-webkit-scrollbar { display: none; }
+        .cat-link {
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--pc-muted);
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            border-radius: 8px 8px 0 0;
+        }
+        .cat-link:hover {
+            color: var(--pc-white);
+            border-bottom-color: var(--pc-white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ─── TOAST MESSAGES ─── */
+        #messages-container {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .toast {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+            font-size: 14px;
+            font-weight: 600;
+            animation: slideIn3d 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--pc-border);
+        }
+        @keyframes slideIn3d {
+            from { transform: translateX(120%) rotateY(-20deg); opacity: 0; }
+            to { transform: translateX(0) rotateY(0deg); opacity: 1; }
+        }
+        .toast-success { background: rgba(5, 46, 22, 0.9); border-color: #15803d; color: #4ade80; }
+        .toast-error   { background: rgba(69, 10, 10, 0.9); border-color: #b91c1c; color: #fca5a5; }
+        .toast-warning { background: rgba(69, 26, 3, 0.9); border-color: #b45309; color: #fde047; }
+        .toast-info    { background: rgba(39, 39, 42, 0.92); border-color: #52525b; color: #e4e4e7; }
+        .toast-icon { font-size: 20px; flex-shrink: 0; }
+        .toast-close { margin-left: auto; background: none; border: none; font-size: 20px; color: inherit; opacity: 0.7; }
+        .toast-close:hover { opacity: 1; }
+
+        /* ─── MAIN ─── */
+        .main-content { flex: 1; position: relative; z-index: 1; }
+
+        /* ─── PAGE CONTAINER ─── */
+        .page-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 36px 24px;
+        }
+
+        /* ─── GLASS 3D CARDS (DARK MONOCHROME) ─── */
+        .card {
+            background: var(--pc-surface);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 16px;
+            border: 1px solid var(--pc-border);
+            box-shadow: var(--pc-glass-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            border-color: var(--pc-border-glow);
+            box-shadow: var(--pc-glass-shadow), var(--pc-glow-white);
+            transform: translateY(-4px);
+        }
+        .card-body { padding: 28px; }
+
+        /* ─── 3D BADGES MONOCHROME ─── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            backdrop-filter: blur(8px);
+        }
+        .badge-open      { background: rgba(255,255,255,0.08); color: #f8fafc; border: 1px solid var(--pc-border); }
+        .badge-responded { background: rgba(161,161,170,0.15); color: #d4d4d8; border: 1px solid #71717a; }
+        .badge-rejoinder { background: rgba(255,255,255,0.12); color: #ffffff; border: 1px solid #a1a1aa; }
+        .badge-evaluated { background: rgba(34,197,94,0.2);   color: #4ade80; border: 1px solid rgba(34,197,94,0.4); }
+        .badge-fraud     { background: rgba(239,68,68,0.25);  color: #f87171; border: 1px solid #ef4444; }
+
+        /* ─── REPUTATION BADGES MONOCHROME METALLIC ─── */
+        .rep-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+        }
+        .rep-ra1000  {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(161,161,170,0.15));
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.25);
+        }
+        .rep-bom {
+            background: rgba(39, 39, 42, 0.9);
+            color: #e4e4e7;
+            border: 1px solid #52525b;
+        }
+        .rep-regular {
+            background: rgba(245,158,11,0.2);
+            color: #fbbf24;
+            border: 1px solid #f59e0b;
+        }
+        .rep-ruim {
+            background: rgba(239,68,68,0.2);
+            color: #f87171;
+            border: 1px solid #ef4444;
+        }
+        .rep-fraud {
+            background: rgba(239,68,68,0.35);
+            color: #ffffff;
+            border: 1px solid #ef4444;
+            animation: pulse3d 2s infinite;
+        }
+        @keyframes pulse3d {
+            0%, 100% { box-shadow: 0 0 15px rgba(239,68,68,0.5); }
+            50% { box-shadow: 0 0 30px rgba(239,68,68,0.9); }
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--pc-border);
+            color: var(--pc-subtle);
+            font-size: 13px;
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+        }
+        .footer-main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 50px 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 36px;
+        }
+        .footer-col .footer-title {
+            color: var(--pc-text);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: var(--pc-muted); }
+        .footer-col a:hover { color: var(--pc-white); padding-left: 4px; }
+        .footer-bottom {
+            border-top: 1px solid var(--pc-border);
+            padding: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--pc-white);
+        }
+        .footer-logo span { color: var(--pc-muted); }
+
+        @media (max-width: 768px) {
+            .navbar-inner { gap: 12px; }
+            .navbar-search { display: none; }
+            .top-bar-links { display: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/pc-theme.css">
+    
+<style>
+    /* ── HERO 3D ── */
+    .hero-3d {
+        position: relative;
+        padding: 70px 24px 60px;
+        text-align: center;
+        background: radial-gradient(circle at 50% 20%, rgba(161, 161, 170, 0.15), rgba(255, 255, 255, 0.05), transparent 70%);
+        border-bottom: 1px solid var(--pc-border);
+        overflow: hidden;
+    }
+    .hero-3d-inner {
+        max-width: 860px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--pc-cyan);
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    
+    .hero-3d h1 {
+        font-size: clamp(32px, 6vw, 56px);
+        font-weight: 800;
+        line-height: 1.15;
+        color: #ffffff;
+        margin-bottom: 16px;
+        letter-spacing: -1.5px;
+    }
+    .hero-3d h1 span {
+        background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet), var(--pc-gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-3d p {
+        font-size: 18px;
+        color: var(--pc-muted);
+        margin-bottom: 36px;
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Three.js 3D Hero Object Canvas Container */
+    #hero-3d-object-canvas {
+        width: 180px;
+        height: 180px;
+        max-width: 60vw;
+        margin: 0 auto 20px;
+        display: block;
+        filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25));
+    }
+
+    .hero-search-3d {
+        display: flex;
+        background: rgba(9, 9, 11, 0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(255, 255, 255, 0.15);
+        transition: all 0.3s ease;
+    }
+    .hero-search-3d:focus-within {
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(161, 161, 170, 0.4);
+        border-color: var(--pc-violet);
+    }
+    .hero-search-3d input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 20px 24px;
+        font-size: 16px;
+        font-family: inherit;
+        color: var(--pc-text);
+        background: transparent;
+    }
+    .hero-search-3d button {
+        background: linear-gradient(135deg, var(--pc-cyan), var(--pc-violet));
+        color: #ffffff;
+        border: none;
+        padding: 20px 36px;
+        font-size: 16px;
+        font-weight: 800;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+    .hero-search-3d button:hover {
+        opacity: 0.95;
+        box-shadow: inset 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .hero-stats-3d {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+    .stat-card-3d {
+        background: rgba(9, 9, 11, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--pc-border);
+        padding: 16px 28px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .stat-card-3d strong {
+        display: block;
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--pc-cyan);
+    }
+    .stat-card-3d span {
+        font-size: 12px;
+        color: var(--pc-subtle);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+
+    /* ── CATEGORIES 3D GRID ── */
+    .categories-grid-3d {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+    }
+    .cat-card-3d {
+        background: var(--pc-surface);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--pc-border);
+        border-radius: 14px;
+        padding: 22px 14px;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cat-card-3d:hover {
+        border-color: var(--pc-cyan);
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+    }
+    .cat-icon-3d { font-size: 32px; display: block; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+    .cat-name-3d { font-size: 13px; font-weight: 700; color: var(--pc-text); }
+
+    /* AI ASSISTANT BANNER */
+    .ai-banner-3d {
+        background: linear-gradient(135deg, rgba(9, 9, 11, 0.9), rgba(24, 24, 27, 0.8));
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 32px;
+        margin: 40px 0;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8), var(--pc-glow-cyan);
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+</style>
+
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- 3D WebGL Background Canvas (Monochrome Particles) -->
+    <canvas id="canvas-3d-bg" aria-hidden="true"></canvas>
+
+    <!-- Top Bar -->
+    <aside class="top-bar" aria-label="Informações institucionais">
+        <div class="top-bar-inner">
+            <span>🛡️ <strong>People's Court Enterprise</strong> • Reclamações públicas com proteção de dados (LGPD)</span>
+            <div class="top-bar-links">
+                <a href="/safety-tips/">Dicas de Segurança</a>
+                <a href="/news/">Notícias Corporativas</a>
+                <a href="/support/">Central de Suporte</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-inner">
+            <!-- Logo -->
+            <a href="/" class="navbar-logo">
+                <span class="navbar-logo-icon">⚖️</span> People's <span>Court</span>
+            </a>
+
+            <!-- Search Bar -->
+            <form class="navbar-search" action="/search/" method="GET">
+                <input type="search" name="q" aria-label="Buscar empresa ou serviço" placeholder="Buscar empresa ou serviço (ex: Nubank, Mercado Livre)..." autocomplete="off">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <!-- Auth Actions -->
+            <div class="navbar-actions">
+                
+                    <a href="/sso/azure/" class="btn-ghost" title="SSO Azure AD">🔐 SSO</a>
+                    <a href="/login/" class="btn-ghost">Entrar</a>
+                    <a href="/signup/" class="btn-primary">Cadastrar</a>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Bar -->
+    <nav class="category-bar" aria-label="Categorias de empresas">
+        <div class="category-bar-inner">
+            <a href="/search/?q=banco" class="cat-link">🏦 Bancos & Fintechs</a>
+            <a href="/search/?q=telefonia" class="cat-link">📱 Telecom & 5G</a>
+            <a href="/search/?q=internet" class="cat-link">🌐 Provedores Web</a>
+            <a href="/search/?q=e-commerce" class="cat-link">🛒 E-commerce & Varejo</a>
+            <a href="/search/?q=seguro" class="cat-link">🛡️ Seguros & Tech</a>
+            <a href="/search/?q=energia" class="cat-link">⚡ Utilities</a>
+            <a href="/search/?q=saude" class="cat-link">🏥 Saúde & Seguros</a>
+            <a href="/search/?q=transporte" class="cat-link">🚗 Mobilidade</a>
+            <a href="/search/?q=" class="cat-link">Ver todas →</a>
+        </div>
+    </nav>
+
+    <!-- Messages / Toasts -->
+    
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content" tabindex="-1">
+        
+<!-- HERO SECTION 3D -->
+<section class="hero-3d">
+    <div class="hero-3d-inner">
+        <span class="hero-tag">⚖️ AMBIENTE CORPORATIVO & LGPD BLINDADO</span>
+        
+        <!-- Interactive 3D Gavel Canvas -->
+        <canvas id="hero-3d-object-canvas" width="180" height="180" aria-hidden="true"></canvas>
+
+        <h1>Plataforma 3D de Resolução de Conflitos e <span>Transparência Corporativa</span></h1>
+        <p>Conectando consumidores e empresas em uma rede auditável com proteção de dados (LGPD), mediação guiada por IA e integridade garantida por selos digitais.</p>
+
+        <!-- Search Bar 3D -->
+        <form class="hero-search-3d" action="/search/" method="GET">
+            <input type="search" name="q" id="hero-search-input" aria-label="Pesquisar empresa" placeholder="Pesquise qualquer empresa (ex: Nubank, Itaú, Magalu)..." autocomplete="off">
+            <button type="submit">Buscar Empresa 🔍</button>
+        </form>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats-3d">
+            <div class="stat-card-3d">
+                <strong>7</strong>
+                <span>Empresas Auditadas</span>
+            </div>
+            <div class="stat-card-3d">
+                <strong>0</strong>
+                <span>Reclamações Registradas</span>
+            </div>
+            <div class="stat-card-3d">
+                <strong>0</strong>
+                <span>Casos Resolvidos</span>
+            </div>
+            <div class="stat-card-3d">
+                <strong>SHA-256</strong>
+                <span>Certificados Imutáveis</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="page-container">
+    
+    <!-- AI ASSISTANT BANNER -->
+    <div class="ai-banner-3d">
+        <div style="font-size: 48px; filter: drop-shadow(0 0 15px rgba(255, 255, 255,0.5));">🤖</div>
+        <div style="flex: 1;">
+            <h2 style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;">Mediação Inteligente com Inteligência Artificial</h2>
+            <p style="font-size: 14px; color: var(--pc-muted);">Nossa IA analisa reclamações em tempo real para orientar os consumidores a expor seus fatos com clareza objetiva, prevenindo ofensas e acelerando acordos resolutivos com as marcas.</p>
+        </div>
+        <a href="/signup/" class="btn-primary" style="padding: 12px 24px;">Abrir Reclamação 3D →</a>
+    </div>
+
+    <!-- CATEGORIES 3D -->
+    <section style="margin-bottom: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="font-size: 22px; font-weight: 800; color: #fff;">Explore por Setor Corporativo</h2>
+            <a href="/search/" style="color: var(--pc-cyan); font-weight: 700; font-size: 14px;">Ver Empresas Auditadas →</a>
+        </div>
+
+        <div class="categories-grid-3d">
+            <a href="/search/?q=banco" class="cat-card-3d">
+                <span class="cat-icon-3d">🏦</span>
+                <span class="cat-name-3d">Bancos & Fintechs</span>
+            </a>
+            <a href="/search/?q=telefonia" class="cat-card-3d">
+                <span class="cat-icon-3d">📱</span>
+                <span class="cat-name-3d">Telecom & 5G</span>
+            </a>
+            <a href="/search/?q=e-commerce" class="cat-card-3d">
+                <span class="cat-icon-3d">🛒</span>
+                <span class="cat-name-3d">E-commerce</span>
+            </a>
+            <a href="/search/?q=seguro" class="cat-card-3d">
+                <span class="cat-icon-3d">🛡️</span>
+                <span class="cat-name-3d">Seguros</span>
+            </a>
+            <a href="/search/?q=energia" class="cat-card-3d">
+                <span class="cat-icon-3d">⚡</span>
+                <span class="cat-name-3d">Energia</span>
+            </a>
+            <a href="/search/?q=saude" class="cat-card-3d">
+                <span class="cat-icon-3d">🏥</span>
+                <span class="cat-name-3d">Saúde</span>
+            </a>
+            <a href="/search/?q=transporte" class="cat-card-3d">
+                <span class="cat-icon-3d">🚗</span>
+                <span class="cat-name-3d">Mobilidade</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- RECENT COMPLAINTS & TOP COMPANIES GRID -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px;">
+        
+        <!-- RECENT COMPLAINTS -->
+        <section aria-labelledby="heading-recent-complaints">
+            <h2 id="heading-recent-complaints" style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">📌 Reclamações Recentes em Mediação</h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                
+                <div class="card" style="padding: 30px; text-align: center; color: var(--pc-muted);">
+                    Nenhuma reclamação recente cadastrada.
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- FEATURED COMPANIES -->
+        <section aria-labelledby="heading-top-companies">
+            <h2 id="heading-top-companies" style="font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 20px;">🏆 Reputação Corporativa Auditada</h2>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">Banco</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Empresa / Serviço Verificado</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">E-Commerce</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Geral / Outros</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">Energia</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Empresa / Serviço Verificado</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">Internet</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Empresa / Serviço Verificado</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">Nubank</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Empresa / Serviço Verificado</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">Telefonia</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Empresa / Serviço Verificado</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 17px; font-weight: 800; color: #fff;">Transporte</h3>
+                        <span style="font-size: 13px; color: var(--pc-subtle); font-weight: 600;">Empresa / Serviço Verificado</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="rep-badge rep-ruim">
+                            ❓ SEM AVALIAÇÃO
+                        </div>
+                        <div style="font-size: 12px; color: var(--pc-muted); margin-top: 6px;">
+                            Score: <strong style="color: var(--pc-cyan);">0,0/10</strong>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-col">
+                <h3 class="footer-title">Consumidores</h3>
+                <ul>
+                    <li><a href="/search/">Buscar Empresas</a></li>
+                    <li><a href="/signup/">Criar Conta Segura</a></li>
+                    <li><a href="/safety-tips/">Privacidade LGPD</a></li>
+                    <li><a href="/support/">Suporte 24/7</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Empresas & SSO</h3>
+                <ul>
+                    <li><a href="/signup/?role=company">Cadastrar Marca</a></li>
+                    <li><a href="/sso/azure/">Portal Enterprise Azure AD</a></li>
+                    <li><a href="/sso/google/">Google Workspace SSO</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Conformidade & LGPD</h3>
+                <ul>
+                    <li><a href="/safety-tips/">Direito ao Esquecimento</a></li>
+                    <li><a href="/news/">Combate a Golpes</a></li>
+                    <li><a href="/support/">Canal DPO / Ouvidoria</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Segurança</h3>
+                <ul>
+                    <li><span style="color: var(--pc-white); font-weight: 700;">✔ Senhas com hash Argon2</span></li>
+                    <li><span style="color: var(--pc-muted); font-weight: 700;">✔ Selo SHA-256 nos acordos</span></li>
+                    <li><span style="color: var(--pc-subtle); font-weight: 700;">✔ Validação de CPF e CNPJ</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">People's <span>Court 3D</span></div>
+            <span>© 2026 People's Court. Plataforma de Mediação com Proteção de Dados LGPD e Autenticação Corporativa.</span>
+        </div>
+    </footer>
+
+    <!-- Bibliotecas locais (sem dependência de CDN) + camadas de cena/movimento -->
+    <script src="/static/vendor/three.min.js" defer></script>
+    <script src="/static/vendor/gsap.min.js" defer></script>
+    <script src="/static/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="/static/js/pc-scene.js" defer></script>
+    <script src="/static/js/pc-motion.js" defer></script>
+
+    
+</body>
+</html>

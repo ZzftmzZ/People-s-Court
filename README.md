@@ -407,7 +407,9 @@ Este repositório tem um **GitHub Actions** configurado para gerar commits *dumm
 Esses commits adicionam a seguinte linha ao `README.md`:
 
 ```html
-<!-- Auto activity commit <timestamp> -->
+<!-- Auto activity commit
+
+<!-- Atualização automática: 2026-11-11T20:50:00Z --> <timestamp> -->
 ```
 
 Isso ajuda a mostrar aos recrutadores e empresas que o projeto está sendo mantido.
