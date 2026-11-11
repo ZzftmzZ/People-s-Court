@@ -4,20 +4,32 @@
 
 *Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.*
 
-🚀 **Acesse o sistema online:** [https://people-s-court.onrender.com/](https://people-s-court.onrender.com/)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-4.2-092E20.svg)](https://www.djangoproject.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](https://www.docker.com/)
+[![LGPD](https://img.shields.io/badge/LGPD-Compliant-success.svg)](#)
+[![Three.js](https://img.shields.io/badge/Three.js-WebGL_3D-black.svg)](https://threejs.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-green.svg)](https://greensock.com/gsap/)
 
-<div align="center">
+---
 
-  <h3>📱 Acesse o People's Court pelo Celular</h3>
-  
-  <p>Escaneie o QR Code abaixo para abrir a aplicação diretamente no seu smartphone:</p>
+### 🌐 Aceda à Aplicação
 
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://people-s-court.onrender.com/" alt="QR Code People's Court" width="180" height="180">
+<a href="https://people-s-court.onrender.com/">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://people-s-court.onrender.com/&color=ffffff&bgcolor=0d1117" alt="QR Code People's Court" width="160" height="160">
+</a>
 
-  <p><a href="https://people-s-court.onrender.com/"><strong>https://people-s-court.onrender.com/</strong></a></p>
+<p align="center">
+  📱 <b>Escaneie o QR Code ou clique no botão abaixo para abrir:</b><br><br>
+  <a href="https://people-s-court.onrender.com/">
+    <img src="https://img.shields.io/badge/🚀_ABRIR_PEOPLE'S_COURT-ONLINE-0070f3?style=for-the-badge&logo=render&logoColor=white" alt="Abrir Demonstração">
+  </a>
+</p>
+
+---
 
 </div>
-
 **Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.**
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
