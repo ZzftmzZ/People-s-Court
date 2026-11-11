@@ -6,6 +6,18 @@
 
 🚀 **Acesse o sistema online:** [https://people-s-court.onrender.com/](https://people-s-court.onrender.com/)
 
+<div align="center">
+
+  <h3>📱 Acesse o People's Court pelo Celular</h3>
+  
+  <p>Escaneie o QR Code abaixo para abrir a aplicação diretamente no seu smartphone:</p>
+
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://people-s-court.onrender.com/" alt="QR Code People's Court" width="180" height="180">
+
+  <p><a href="https://people-s-court.onrender.com/"><strong>https://people-s-court.onrender.com/</strong></a></p>
+
+</div>
+
 **Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.**
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
