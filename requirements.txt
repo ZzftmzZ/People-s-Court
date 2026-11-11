@@ -5,3 +5,7 @@ whitenoise>=6.6
 gunicorn>=21.2.0
 dj-database-url>=2.1.0
 argon2-cffi>=23.1.0
+
+django-csp>=3.7
+
+django-pwa>=1.4.0

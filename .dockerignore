@@ -1,0 +1,13 @@
+# Exclude Python caches and virtualenvs
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+*.log
+static/
+*.sqlite3
+.DS_Store
+# Docker related
+Dockerfile
+docker-compose.yml
+

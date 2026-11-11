@@ -1,11 +1,40 @@
-*.pyc
+# .gitignore
+# Python
 __pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.pyo
+*.pyd
+*.pyc
+*.log
 *.sqlite3
-db.sqlite3
+
+# Django
+local_settings.py
+/db.sqlite3
+/media
+/staticfiles
+
+# Environment
 .env
+.venv
+env/
 venv/
-.venv/
-media/
-protected_media/
+ENV/
+
+# VSCode
+.vscode/
+
+# IDEs
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
 .DS_Store
-staticfiles/
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose.yml

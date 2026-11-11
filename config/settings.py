@@ -40,13 +40,106 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'core',
+    'pwa',
+    'csp',
 ]
+# ---------- PWA SETTINGS ----------
+PWA_APP_NAME = "People's Court"
+PWA_APP_SHORT_NAME = "Court"
+PWA_APP_DESCRIPTION = "Plataforma Dark Minimalista de Resolução de Conflitos"
+PWA_APP_THEME_COLOR = "#050505"
+PWA_APP_BACKGROUND_COLOR = "#050505"
+PWA_APP_DISPLAY = "standalone"
+PWA_APP_ORIENTATION = "portrait"
+PWA_APP_START_URL = "/"
+PWA_APP_SCOPE = "/"
+PWA_APP_ICON = "static/favicon.ico"
+PWA_APP_ICONS = [
+    {"src": "/static/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/static/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png"},
+]
+PWA_SERVICE_WORKER_PATH = "static/service-worker.js"
+
+# ---------- CSP SETTINGS ----------
+CONTENT_SECURITY_POLICY = {
+    "DIRECTIVES": {
+        "base-uri": ("'self'",),
+        "child-src": ("'self'",),
+        "connect-src": ("'self'",),
+        "default-src": ("'self'",),
+        "font-src": ("'self'", "https://fonts.gstatic.com"),
+        "form-action": ("'self'",),
+        "frame-ancestors": ("'none'",),
+        "frame-src": ("'self'",),
+        "img-src": ("'self'", "data:"),
+        "manifest-src": ("'self'",),
+        "media-src": ("'self'",),
+        "object-src": ("'none'",),
+        "script-src": ("'self'", "'unsafe-inline'"),
+        "style-src": ("'self'", "'unsafe-inline'", "https://fonts.googleapis.com"),
+        "upgrade-insecure-requests": True,
+        "worker-src": ("'self'",),
+    }
+}
+
+
+
+# ---------- LOGGING ----------
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {"format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"},
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+            "level": "INFO",
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": BASE_DIR / "logs" / "app.log",
+            "maxBytes": 10485760,  # 10 MiB
+            "backupCount": 5,
+            "formatter": "standard",
+            "level": "INFO",
+        },
+    },
+    "loggers": {
+        "django": {"handlers": ["console", "file"], "level": "INFO", "propagate": True},
+        "core": {"handlers": ["console", "file"], "level": "INFO", "propagate": False},
+    },
+}
+
+# ---------- MIDDLEWARE ----------
+# Insert CSP middleware after SecurityMiddleware
+
+
+
+# ---------- PWA SETTINGS ----------
+PWA_APP_NAME = "People's Court"
+PWA_APP_SHORT_NAME = "Court"
+PWA_APP_DESCRIPTION = "Plataforma Dark Minimalista de Resolução de Conflitos"
+PWA_APP_THEME_COLOR = "#050505"
+PWA_APP_BACKGROUND_COLOR = "#050505"
+PWA_APP_DISPLAY = "standalone"
+PWA_APP_ORIENTATION = "portrait"
+PWA_APP_START_URL = "/"
+PWA_APP_SCOPE = "/"
+PWA_APP_ICON = "static/favicon.ico"
+PWA_APP_ICONS = [
+    {"src": "/static/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/static/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png"},
+]
+PWA_SERVICE_WORKER_PATH = "static/service-worker.js"
 
 MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'core.middleware.EnterpriseSecurityHeadersMiddleware',
     'core.middleware.AdvancedRateLimitMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CspMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

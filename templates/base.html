@@ -49,6 +49,11 @@
     
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <!-- Icons for Android/Chrome -->
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/icon-192x192.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'icons/icon-512x512.png' %}">
     <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('pc-motion');</script>
 
     <style>
@@ -718,5 +723,14 @@
     <script src="{% static 'js/pc-motion.js' %}" defer></script>
 
     {% block extra_js %}{% endblock %}
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('{% static "service-worker.js" %}')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('SW registration failed', err));
+      });
+    }
+    </script>
 </body>
 </html>
