@@ -2,6 +2,10 @@
 
 # ⚖️ People's Court
 
+*Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.*
+
+🚀 **Acesse o sistema online:** [https://people-s-court.onrender.com/](https://people-s-court.onrender.com/)
+
 **Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.**
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
