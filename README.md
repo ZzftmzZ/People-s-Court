@@ -367,3 +367,21 @@ Feito com 🖤 e Django.
 
 </div>
 
+
+<!-- Dummy activity commit: 2026-11-11T20:23:37Z -->
+
+---
+
+## 🤖 Auto‑commit de atividade
+
+Este repositório tem um **GitHub Actions** configurado para gerar commits *dummy* de forma aleatória, simulando atividade contínua mesmo quando o computador local está desligado. O workflow roda **diariamente às 02:00 UTC** com ~30 % de chance de executar e inclui um atraso aleatório de até 24 h, de modo que os commits podem acontecer no mesmo dia, em dias alternados ou em semanas diferentes.
+
+Esses commits adicionam a seguinte linha ao `README.md`:
+
+```html
+<!-- Auto activity commit <timestamp> -->
+```
+
+Isso ajuda a mostrar aos recrutadores e empresas que o projeto está sendo mantido.
+
+---

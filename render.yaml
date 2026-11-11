@@ -1,0 +1,30 @@
+# Render Blueprint for People\'s Court
+# Deploys a Docker-based Django application on Render.com
+# The service uses the Dockerfile in the repository root.
+services:
+  - type: web
+    name: peoples-court-app
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    # The command to start the container is defined in entrypoint.sh
+    # Render will automatically run the Dockerfile's CMD.
+    # Expose port 8000 (configured in Dockerfile).
+    # Enable auto deploy on push to main.
+    autoDeploy: true
+    # Set environment variables (add more via the Render dashboard).
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "*"
+      - key: DJANGO_SECRET_KEY
+        value: "${{secrets.DJANGO_SECRET_KEY}}"
+
+# Optional PostgreSQL database (Render provides managed PostgreSQL).
+# Uncomment if you need a persistent DB.
+#databases:
+#  - name: peoples-court-db
+#    plan: free
+#    region: oregon
+#    # The DATABASE_URL env var will be injected automatically.

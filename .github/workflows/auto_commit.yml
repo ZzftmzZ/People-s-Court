@@ -1,0 +1,61 @@
+# Arquivo de workflow do GitHub Actions para commits automáticos
+# Este workflow roda em um agendamento (cron) e realiza um commit 'dummy'
+# no README.md para mostrar atividade no repositório, mesmo que o
+# computador local esteja desligado ou sem conexão.
+# A lógica inclui aleatoriedade tanto na probabilidade de executar
+# quanto no horário dentro do intervalo agendado.
+
+name: Auto Commit Dummy Activity
+
+on:
+  # Executa diariamente às 02:00 UTC (pode ser ajustado)
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Decidir se vai fazer commit (aprox. 30% de chance)
+        id: decide
+        run: |
+          # Gera número aleatório de 1 a 100
+          RAND=$((1 + RANDOM % 100))
+          echo "rand=$RAND" >> $GITHUB_OUTPUT
+          if [ $RAND -le 30 ]; then
+            echo "should_commit=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_commit=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Aguardar atraso aleatório (0-24h) se for fazer commit
+        if: steps.decide.outputs.should_commit == 'true'
+        run: |
+          # Atraso aleatório até 86400 segundos (24h)
+          DELAY=$((RANDOM % 86400))
+          echo "Aguardando $DELAY segundos..."
+          sleep $DELAY
+
+      - name: Atualizar README.md com comentário dummy
+        if: steps.decide.outputs.should_commit == 'true'
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "\n<!-- Auto activity commit $TIMESTAMP -->" >> README.md
+
+      - name: Commit e push das alterações
+        if: steps.decide.outputs.should_commit == 'true'
+        run: |
+          git add README.md
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Auto activity commit $TIMESTAMP"
+          git push
