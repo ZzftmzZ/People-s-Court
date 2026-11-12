@@ -11,6 +11,9 @@
 [![LGPD](https://img.shields.io/badge/LGPD-Compliant-success.svg)](#)
 [![Three.js](https://img.shields.io/badge/Three.js-WebGL_3D-black.svg)](https://threejs.org/)
 [![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-green.svg)](https://greensock.com/gsap/)
+[![CI/CD](https://github.com/ZzftmzZ/People-s-Court/actions/workflows/lighthouse_w3c.yml/badge.svg)](https://github.com/ZzftmzZ/People-s-Court/actions/workflows/lighthouse_w3c.yml)
+[![W3C Validation](https://img.shields.io/badge/W3C-Valid_HTML5-success.svg)](https://validator.w3.org/nu/?doc=https%3A%2F%2Fpeople-s-court.onrender.com%2F)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-Passing-success.svg)](https://github.com/ZzftmzZ/People-s-Court/actions)
 
 ---
 
