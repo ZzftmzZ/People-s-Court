@@ -1,11 +1,11 @@
 name: Lighthouse & W3C Validation
 
 on:
-  # Run on every push to main and on a schedule (daily)
   push:
     branches: [main]
   schedule:
     - cron: '0 3 * * *'  # 03:00 UTC daily
+  workflow_dispatch:
 
 jobs:
   lighthouse:
@@ -13,14 +13,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v10
+        uses: treosh/lighthouse-ci-action@v12
         with:
           urls: https://people-s-court.onrender.com
-          # Expect high scores; fail if any metric < 90
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          # Config to treat scores < 90 as failure
+          uploadArtifacts: false
+          temporaryPublicStorage: false
           configPath: ./.github/lighthouserc.json
 
   w3c:
@@ -28,8 +27,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: W3C Validator
-        uses: w3c/validation-action@v1
-        with:
-          site-url: https://people-s-court.onrender.com
-          fail-on-error: true
+
+      - name: Validate HTML via W3C Nu Validator
+        run: |
+          response=$(curl -s "https://validator.w3.org/nu/?doc=https%3A%2F%2Fpeople-s-court.onrender.com%2F&out=json")
+          echo "$response"
+          errors=$(echo "$response" | jq '[.messages[] | select(.type=="error")] | length')
+          echo "Found $errors errors."
+          if [ "$errors" -gt 0 ]; then
+            echo "W3C HTML Validation failed with $errors errors."
+            exit 1
+          fi
+          echo "W3C HTML Validation passed with 0 errors!"
