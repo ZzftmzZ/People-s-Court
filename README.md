@@ -2,423 +2,190 @@
 
 # ⚖️ People's Court
 
-*Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.*
+**Plataforma de Resolução de Conflitos, Mediação 3D e Governança Corporativa com Conformidade à LGPD**
 
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-4.2-092E20.svg)](https://www.djangoproject.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org/)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](https://www.docker.com/)
-[![LGPD](https://img.shields.io/badge/LGPD-Compliant-success.svg)](#)
-[![Three.js](https://img.shields.io/badge/Three.js-WebGL_3D-black.svg)](https://threejs.org/)
-[![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-green.svg)](https://greensock.com/gsap/)
-[![CI/CD](https://github.com/ZzftmzZ/People-s-Court/actions/workflows/lighthouse_w3c.yml/badge.svg)](https://github.com/ZzftmzZ/People-s-Court/actions/workflows/lighthouse_w3c.yml)
-[![W3C Validation](https://img.shields.io/badge/W3C-Valid_HTML5-success.svg)](https://validator.w3.org/nu/?doc=https%3A%2F%2Fpeople-s-court.onrender.com%2F)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse-Passing-success.svg)](https://github.com/ZzftmzZ/People-s-Court/actions)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-4.2+-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/ZzftmzZ/People-s-Court/actions)
+[![W3C Validation](https://img.shields.io/badge/W3C-Valid_HTML5-success?style=for-the-badge&logo=w3c&logoColor=white)](https://validator.w3.org/nu/?doc=https%3A%2F%2Fpeople-s-court.onrender.com%2F)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-Passing-00CC66?style=for-the-badge&logo=lighthouse&logoColor=white)](https://github.com/ZzftmzZ/People-s-Court/actions)
 
----
+<br>
 
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-### 🌐 Aceda à Aplicação
+### 🌐 Demonstração Online em Produção
 
 <a href="https://people-s-court.onrender.com/">
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://people-s-court.onrender.com/&color=ffffff&bgcolor=0d1117" alt="QR Code People's Court" width="160" height="160">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://people-s-court.onrender.com/&color=ffffff&bgcolor=0d1117" alt="QR Code People's Court" width="160" height="160" style="border-radius: 8px;">
 </a>
 
 <p align="center">
-  📱 <b>Escaneie o QR Code ou clique no botão abaixo para abrir:</b><br><br>
+  📱 <b>Escaneie o QR Code ou clique no botão abaixo para acessar o sistema:</b><br><br>
   <a href="https://people-s-court.onrender.com/">
-    <img src="https://img.shields.io/badge/🚀_ABRIR_PEOPLE'S_COURT-ONLINE-0070f3?style=for-the-badge&logo=render&logoColor=white" alt="Abrir Demonstração">
+    <img src="https://img.shields.io/badge/🚀_ACESSAR_APLICAÇÃO_NO_RENDER-0070F3?style=for-the-badge&logo=render&logoColor=white" alt="Abrir Demonstração">
   </a>
 </p>
 
----
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-</div>
-**Plataforma 3D de resolução de conflitos de consumo, transparência corporativa e conformidade com a LGPD.**
-
-[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-4.2-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
-[![LGPD](https://img.shields.io/badge/LGPD-Compliant-success)](https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd)
-[![Three.js](https://img.shields.io/badge/Three.js-WebGL_3D-black?logo=three.js)](https://threejs.org/)
-[![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02)](https://gsap.com/)
-
 </div>
 
 ---
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 📖 Sobre o Projeto
 
-O **People's Court** conecta consumidores e empresas em um ambiente transparente, seguro e visualmente impressionante para registrar, responder e avaliar reclamações. A plataforma foi construída com foco em:
+O **People's Court** é uma plataforma concebida para aproximar consumidores e corporações em um ambiente digital transparente, confiável e imersivo para registrar, gerenciar, responder e auditar reclamações. O ecossistema foi projetado segundo os mais rigorosos padrões da indústria:
 
-- 🛡️ **Proteção de dados pessoais (LGPD)**
-- 🕵️ **Prevenção de fraudes** com score de risco automático
-- 📜 **Rastreabilidade** via AuditLog com hash SHA-256
-- 🎨 **Interface 3D** Dark Minimalista com Three.js + GSAP
+- 🛡️ **Conformidade com a LGPD:** Máscaras de dados sensíveis (CPF mascarado como `***.456.789-**`) e coleta mínima de dados.
+- 🕵️ **Auditoria e Rastreabilidade:** Registro de eventos críticos em `AuditLog` com assinatura criptográfica SHA-256 imutável.
+- ⚖️ **Mecanismos Antifraude:** Avaliação algorítmica de risco e detecção de duplicidades.
+- 🎨 **Interface Imersiva 3D:** Experiência visual Dark Minimalista desenvolvida com **Three.js** e animações de alta performance com **GSAP (ScrollTrigger)**.
 
 ---
 
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+## 🌟 Funcionalidades e Arquitetura
 
-## 🌟 Recursos Principais
-
-| Pilar | Descrição |
+| Módulo | Descrição Técnica |
 | :--- | :--- |
-| 🎨 **Design 3D Dark Minimalista** | Interface responsiva em modo escuro com partículas WebGL (Three.js), animações GSAP ScrollTrigger e efeito tilt 3D nos cards. |
-| 🔐 **Autenticação Segura** | Cadastro, login, recuperação de senha por token e **verificação em duas etapas (2FA)** por e-mail. |
-| 🏢 **SSO Corporativo** | Login empresarial via **Azure AD** e **Google Workspace** (OAuth2/SAML). |
-| 🤖 **IA de Mediação** | Assistente de IA que analisa reclamações em tempo real para orientar consumidores com objetividade. |
-| 🪪 **Cadastro de Consumidor (LGPD)** | Validação de **CPF** pelo algoritmo Módulo 11, senha complexa e **máscara de privacidade** (`***.456.789-**`). |
-| 🔄 **Máquina de Estados** | Fluxo completo: `Em Aberto` → `Respondida` → `Contrarresposta` → `Avaliada` (nota de 0 a 10). |
-| 🌐 **Busca Inteligente** | Autocomplete com cache + crawler automático na Wikipedia/DuckDuckGo para cadastrar empresas não encontradas. |
-| 💎 **Certificado Digital** | Certificado imutável por reclamação com selo SHA-256 e opção de impressão. |
-| 🛡️ **Segurança Enterprise** | CSP com `worker-src`/`media-src` para WebGL, cookies `HttpOnly`, CSRF, `X-Frame-Options: DENY`, Rate Limiter. |
-| 🔑 **Hashing de Senhas** | Argon2 (primário), PBKDF2 e BCrypt (fallback). |
-| 📋 **Auditoria SHA-256** | Todo evento crítico registrado em `AuditLog` com hash de integridade imutável. |
+| 🎨 **Design 3D Dark** | Interface responsiva com partículas WebGL (Three.js), microinterações GSAP e cards com efeito tilt 3D. |
+| 🔐 **Segurança & 2FA** | Autenticação robusta com recuperação segura de senha e verificação em duas etapas (2FA) via e-mail. |
+| 🏢 **SSO Corporativo** | Integração empresarial com suporte a login federado (OAuth2 / SAML). |
+| 🤖 **Mediação Assistida por IA** | Auxílio ao consumidor na descrição objetiva e estruturada de incidentes de consumo. |
+| 🔄 **Ciclo de Mediação** | Máquina de estados finitos: `Em Aberto` ➔ `Respondida` ➔ `Contrarresposta` ➔ `Avaliada` (0 a 10). |
+| 🌐 **Busca Inteligente** | Autocomplete em tempo real com cache e fallback para indexação dinâmica. |
+| 📜 **Certificação Digital** | Certificado imutável para reclamações resolvidas com identificador único e hash SHA-256. |
+| 🛡️ **Segurança Defensiva** | Senhas protegidas com algoritmo **Argon2**, proteção contra CSRF/XSS, headers HSTS e Content Security Policy (CSP). |
 
 ---
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 📋 Requisitos do Sistema
 
-### ✅ Requisitos Funcionais
+### ✅ Requisitos Funcionais (RF)
 
 | ID | Requisito | Descrição |
 | :--- | :--- | :--- |
-| **RF01** | Cadastro de consumidor | O sistema deve permitir o cadastro de consumidores com nome, CPF válido (Módulo 11), e-mail e senha. |
-| **RF02** | Cadastro de empresa | O sistema deve permitir o cadastro de empresas com perfil próprio, incluindo CNPJ e status de verificação. |
-| **RF03** | Autenticação | O sistema deve permitir login e logout de usuários, com perfis distintos de consumidor e empresa. |
-| **RF04** | Verificação em duas etapas (2FA) | O sistema deve enviar um código por e-mail e exigir sua confirmação para concluir o login. |
-| **RF05** | Recuperação de senha | O usuário deve poder redefinir a senha por meio de um token enviado por e-mail. |
-| **RF06** | Busca de empresas | O sistema deve permitir buscar empresas por nome, com autocomplete durante a digitação e crawler automático para novas empresas. |
-| **RF07** | Perfil público da empresa | O sistema deve exibir o perfil da empresa com reputação, reclamações e alertas de risco. |
-| **RF08** | Registro de reclamação | O consumidor autenticado deve poder abrir uma reclamação contra uma empresa, com título, descrição e categoria. |
-| **RF09** | Detecção de duplicidade | O sistema deve identificar reclamações duplicadas do mesmo consumidor contra a mesma empresa em um intervalo de 7 dias. |
-| **RF10** | Resposta da empresa | A empresa deve poder responder apenas às reclamações direcionadas a ela. |
-| **RF11** | Contrarresposta do consumidor | O consumidor deve poder replicar a resposta da empresa. |
-| **RF12** | Avaliação final | O consumidor deve poder avaliar o caso encerrado com nota de 0 a 10; a avaliação só é aceita após a empresa responder. |
-| **RF13** | Máquina de estados | O sistema deve controlar o ciclo `Em Aberto` → `Respondida` → `Contrarresposta` → `Avaliada`. |
-| **RF14** | Denúncia de reclamações | Usuários devem poder denunciar reclamações abusivas ou suspeitas, com motivo informado. |
-| **RF15** | Pontuação de reputação | O sistema deve calcular automaticamente a reputação da empresa com base nas respostas e avaliações. |
-| **RF16** | Alertas de fraude | O sistema deve calcular um índice de risco e sinalizar empresas com comportamento suspeito. |
-| **RF17** | Suporte | Usuários devem poder abrir tickets de suporte e trocar mensagens. |
-| **RF18** | Conteúdo informativo | O sistema deve disponibilizar páginas de dicas de segurança e notícias. |
-| **RF19** | Paginação | Listagens de reclamações e resultados de busca devem ser paginadas (10 itens por página). |
-| **RF20** | Feedback ao usuário | O sistema deve exibir mensagens de sucesso e erro após as principais ações. |
-| **RF21** | SSO Enterprise | O sistema deve permitir login via Azure AD e Google Workspace para usuários corporativos. |
-| **RF22** | IA de Mediação | O sistema deve disponibilizar assistente de IA para orientação de consumidores na elaboração de reclamações. |
-| **RF23** | Certificado Digital | O sistema deve gerar um certificado imutável com hash SHA-256 para cada reclamação encerrada. |
+| **RF01** | Cadastro de Consumidor | Cadastro de cidadãos com validação estrita de CPF (Módulo 11) e senhas fortes. |
+| **RF02** | Cadastro de Empresa | Cadastro corporativo com CNPJ verificado e painel de reputação auditada. |
+| **RF03** | Controle de Acesso | Perfis e permissões granulares entre Consumidor, Empresa e Administrador. |
+| **RF04** | Autenticação 2FA | Envio de código dinâmico descartável para validação de identidade no login. |
+| **RF05** | Recuperação de Conta | Redefinição de credenciais por tokens criptográficos temporários. |
+| **RF06** | Busca Preditiva | Busca por empresas com autocomplete otimizado e crawler auxiliar. |
+| **RF07** | Perfil Corporativo | Painel público exibindo pontuação, histórico de atendimento e selos de conformidade. |
+| **RF08** | Abertura de Casos | Registro estruturado de reclamações com categoria, empresa e evidências. |
+| **RF09** | Filtro de Duplicidade | Bloqueio de reclamações idênticas consecutivas para a mesma empresa. |
+| **RF10** | Réplica e Tréplica | Canal bilateral de diálogo entre o consumidor e a ouvidoria da empresa. |
+| **RF11** | Encerramento e Nota | Avaliação de resolução com pontuação de 0 a 10 impactando a reputação da empresa. |
+| **RF12** | Certificado de Resolução | Emissão de comprovante em PDF com hash SHA-256 para fins jurídicos e de compliance. |
 
-### 🛡️ Requisitos Não Funcionais
+### 🛡️ Requisitos Não Funcionais (RNF)
 
-| ID | Categoria | Requisito |
+| ID | Categoria | Especificação |
 | :--- | :--- | :--- |
-| **RNF01** | Segurança | As senhas devem ser armazenadas apenas como hash Argon2, com regras de complexidade (mínimo de 8 caracteres, maiúsculas, minúsculas, números e caracteres especiais). |
-| **RNF02** | Segurança | Cookies de sessão e CSRF devem usar `HttpOnly`; a aplicação deve enviar `X-Frame-Options: DENY` e `nosniff`. |
-| **RNF03** | Segurança | Todo conteúdo enviado por usuários deve ser sanitizado (Bleach) para prevenir XSS. |
-| **RNF04** | Segurança | Rotas sensíveis devem exigir autenticação e respeitar o perfil do usuário (consumidor ou empresa). |
-| **RNF05** | Privacidade (LGPD) | O CPF deve ser exibido mascarado (`***.456.789-**`) e apenas dados estritamente necessários devem ser coletados. |
-| **RNF06** | Auditabilidade | Ações relevantes (login, cadastro, denúncias e mudanças de status) devem ser registradas em `AuditLog` com hash SHA-256. |
-| **RNF07** | Desempenho | Consultas frequentes devem usar índices de banco de dados, e o autocomplete deve usar cache (5 minutos). |
-| **RNF08** | Usabilidade | A interface deve ser responsiva, com design 3D dark minimalista e suporte mobile completo. |
-| **RNF09** | Portabilidade | O sistema deve rodar de forma nativa em Windows, Linux e macOS e também via Docker Compose. |
-| **RNF10** | Compatibilidade | O sistema deve funcionar com Python 3.11+, Django 4.2 e PostgreSQL 15 (SQLite em desenvolvimento). |
-| **RNF11** | Manutenibilidade | O código deve ser organizado em app Django modular (`core`) e coberto por testes automatizados. |
-| **RNF12** | Configurabilidade | Banco de dados e envio de e-mail devem ser configuráveis por variáveis de ambiente. |
-| **RNF13** | CSP/WebGL | A Content Security Policy deve incluir `worker-src` e `media-src` para permitir o funcionamento correto das cenas Three.js. |
+| **RNF01** | Segurança | Armazenamento de senhas exclusivamente via **Argon2** com fator de custo elevado. |
+| **RNF02** | Proteção de Dados | Conformidade com a **LGPD** mascarando identificadores fiscais e dados pessoais. |
+| **RNF03** | Headers HTTP | `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff` e `Strict-Transport-Security`. |
+| **RNF04** | Qualidade de Código | Pipeline com validação W3C HTML5 oficial e Lighthouse CI com score superior a 85%. |
+| **RNF05** | Portabilidade | Totalmente containerizado via Docker e orquestrado por Docker Compose. |
+| **RNF06** | Desempenho | Assets otimizados localmente e estratégia de cache em memória para requisições frequentes. |
 
 ---
 
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+## 🛠️ Tecnologias e Ferramental
 
-## 🛠️ Tecnologias Utilizadas
-
-### Backend
-
-- Python 3.11+
-- Django 4.2 (ORM, autenticação e sistema de migrações)
-
-### Banco de Dados
-
-- SQLite (padrão no desenvolvimento local, sem configuração adicional)
-- PostgreSQL 15 (ativado automaticamente ao definir a variável `POSTGRES_DB`, como no Docker Compose)
-
-### Frontend
-
-- HTML5 semântico com Django Templates
-- **CSS puro (Vanilla CSS)** em tema dark minimalista — paleta monocromática preto/branco/cinza
-- **JavaScript** moderno (ES5+ compatível) sem frameworks externos
-- **Three.js** — cena WebGL de partículas 3D no fundo e martelo 3D animado no hero
-- **GSAP + ScrollTrigger** — animações de revelação no scroll e parallax do hero
-- **jQuery Mask** — máscaras de formulário para CPF/CNPJ
-- **Lucide Icons** — ícones SVG leves e consistentes
-
-### Segurança
-
-- Bleach (sanitização de HTML contra XSS)
-- Argon2 e BCrypt (hashers de senha configurados)
-- Validação de CPF (Módulo 11) e máscara de privacidade LGPD
-- Proteções nativas do Django (CSRF, XSS, clickjacking)
-- Rate Limiter defensivo (DDoS / Brute-Force)
-- CSP com `worker-src`/`media-src` para WebGL
-
-### Infraestrutura
-
-- Docker e Docker Compose (web + PostgreSQL)
-- WhiteNoise para servir estáticos em produção
-- Procfile para deploy em plataformas como Render
+```text
+├── Back-End: Python 3.11+, Django 4.2+, Gunicorn, Argon2
+├── Front-End: HTML5 Semântico, CSS3 Moderno, JavaScript (ES6+), Three.js (WebGL), GSAP
+├── Banco de Dados: PostgreSQL 15 (Produção), SQLite (Desenvolvimento)
+├── DevOps & Cloud: Docker, Docker Compose, GitHub Actions (CI/CD), Render Blueprint
+└── Qualidade: Lighthouse CI, Nu W3C HTML Validator, Django Test Framework
+```
 
 ---
 
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
+## 🚀 Guia de Execução Local
 
-## 🚀 Guia de Execução
-
-Primeiro, clone o repositório e entre na pasta do projeto:
+### Pré-requisitos
+* Git instalado
+* Python 3.11+ ou Docker & Docker Compose
 
 ```bash
+# Clone o repositório
 git clone https://github.com/ZzftmzZ/People-s-Court.git
 cd People-s-Court
 ```
 
-Escolha uma das duas opções abaixo.
-
----
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-### 🅰️ Opção A: Execução Nativa (Sem Docker)
-
-**Pré-requisitos:** [Python 3.11+](https://www.python.org/downloads/) e `pip`.
-
-Por padrão, o projeto usa **SQLite**, então não é necessário instalar o PostgreSQL.
-
-#### 1. Criar e ativar o ambiente virtual
-
-<details open>
-<summary><b>🪟 Windows (PowerShell)</b></summary>
+### 🅰️ Opção 1: Execução Nativa com Python
 
 ```powershell
+# 1. Crie e ative o ambiente virtual (Windows PowerShell)
 python -m venv .venv
 .venv\Scripts\Activate.ps1
-```
 
-Se o PowerShell bloquear a ativação, execute uma vez:
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-```
-
-No **Prompt de Comando (CMD)**, use:
-
-```cmd
-python -m venv .venv
-.venv\Scripts\activate.bat
-```
-
-</details>
-
-<details>
-<summary><b>🐧 Linux</b></summary>
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-Em distribuições Debian/Ubuntu, se o módulo `venv` não existir:
-
-```bash
-sudo apt install python3-venv
-```
-
-</details>
-
-<details>
-<summary><b>🍎 macOS</b></summary>
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-</details>
-
-Com o ambiente ativo, o terminal exibirá o prefixo `(.venv)`.
-
-#### 2. Instalar as dependências
-
-```bash
+# 2. Instale as dependências
 pip install --upgrade pip
 pip install -r requirements.txt
-```
 
-#### 3. Aplicar as migrações
-
-```bash
+# 3. Execute as migrações do banco
 python manage.py migrate
-```
 
-#### 4. (Opcional) Popular o banco com dados de exemplo
-
-```bash
+# 4. (Opcional) Popule o banco com dados demonstrativos
 python manage.py seed_data
-```
 
-#### 5. Iniciar o servidor
-
-```bash
+# 5. Inicie o servidor
 python manage.py runserver
 ```
-
-Acesse: **http://127.0.0.1:8000**
-
-> 💡 **Código 2FA em desenvolvimento:** por padrão, os e-mails são enviados para o **console**. O código de verificação em duas etapas aparecerá no terminal onde o servidor está rodando.
+> Acesse: **http://127.0.0.1:8000**
 
 ---
 
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-### 🅱️ Opção B: Execução com Docker (Docker Compose)
-
-**Pré-requisito:** [Docker](https://docs.docker.com/get-docker/) com Docker Compose (Docker Desktop no Windows e macOS; Docker Engine no Linux).
-
-O comando é o mesmo em **Windows, Linux e macOS**.
-
-#### 1. Construir e subir o ambiente completo
+### 🅱️ Opção 2: Execução com Docker Compose
 
 ```bash
+# Constrói a imagem e sobe a aplicação + PostgreSQL
 docker-compose up --build
 ```
-
-Em versões recentes do Docker, o equivalente é `docker compose up --build`.
-
-Isso inicia dois serviços:
-
-| Serviço | Descrição | Porta no host |
-| :--- | :--- | :--- |
-| `db` | PostgreSQL 15 | `5433` |
-| `web` | Aplicação Django | `8001` |
-
-#### 2. Aplicar as migrações (em outro terminal)
-
-Na primeira execução, com os containers ativos:
-
-```bash
-docker-compose exec web python manage.py migrate
-```
-
-#### 3. Acessar a aplicação
-
-Acesse: **http://localhost:8001**
-
-#### Comandos úteis
-
-```bash
-# Parar os containers
-docker-compose down
-
-# Parar e remover também o volume do banco de dados
-docker-compose down -v
-```
+> Acesse: **http://localhost:8001**
 
 ---
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 ## 🧪 Testes Automatizados
 
-Com o ambiente configurado (Opção A com o `.venv` ativo, ou dentro do container), execute:
+A aplicação possui suíte de testes unitários e de integração cobrindo fluxos de permissão, validação de CPF, integridade LGPD e cálculo de reputação:
 
 ```bash
+# Execução nativa:
 python manage.py test core
-```
 
-Com Docker:
-
-```bash
+# Execução dentro do container Docker:
 docker-compose exec web python manage.py test core
 ```
 
-A suíte cobre validação de formulários, permissões de acesso, cálculo de reputação, paginação, mensagens do sistema, validação de CPF, política de senhas e máscara LGPD.
-
 ---
 
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-## 📁 Estrutura do Projeto
+## 📁 Estrutura de Diretórios
 
 ```text
 People-s-Court/
-├── config/              # Configurações do projeto Django (settings, urls, wsgi/asgi)
-├── core/                # App principal (models, views, forms, urls, testes)
-│   ├── management/      # Comandos personalizados (seed_data, auto_crawler_empresas)
-│   └── migrations/      # Migrações do banco de dados
-├── static/              # Arquivos estáticos
-│   ├── css/             # pc-theme.css — tema dark minimalista
-│   ├── js/              # pc-scene.js (Three.js) e pc-motion.js (GSAP)
-│   └── vendor/          # Three.js, GSAP, ScrollTrigger, jQuery Mask, Lucide
-├── templates/           # Templates HTML (base e páginas do app core)
-├── Dockerfile           # Imagem da aplicação
-├── docker-compose.yml   # Orquestração (web + PostgreSQL)
-├── requirements.txt     # Dependências Python
-└── manage.py            # Utilitário de linha de comando do Django
+├── .github/              # Workflows de CI/CD (Lighthouse, W3C Validator)
+├── config/               # Configurações centrais do Django (settings, urls, wsgi)
+├── core/                 # Aplicação central (models, views, forms, urls, testes)
+│   ├── management/       # Comandos CLI personalizados (seed_data, crawler)
+│   └── migrations/       # Versionamento do esquema de banco de dados
+├── static/               # Assets estáticos (estilos, cenas 3D, ícones)
+│   ├── css/              # Estilos modulares em tema dark
+│   ├── js/               # Scripts de cena (pc-scene.js) e animação (pc-motion.js)
+│   └── vendor/           # Three.js, GSAP, ScrollTrigger locais
+├── templates/            # Templates HTML semânticos renderizados pelo Django
+├── Dockerfile            # Configuração de build do contêiner Docker
+├── docker-compose.yml    # Orquestração do ambiente Web + Banco PostgreSQL
+├── render.yaml           # Infraestrutura como código (IaC) para o Render
+└── requirements.txt      # Manifesto de dependências do Python
 ```
 
 ---
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-## ⚠️ Aviso para Produção
-
-As configurações atuais são voltadas ao **desenvolvimento**. Antes de publicar:
-
-- Defina `DEBUG=False`
-- Configure `ALLOWED_HOSTS` com seu domínio
-- Mova `SECRET_KEY` e credenciais do banco para variáveis de ambiente
-- Configure um backend SMTP real para o envio dos códigos 2FA
-- Configure `CSRF_TRUSTED_ORIGINS` com seu domínio HTTPS
-
----
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
 
 <div align="center">
 
-Feito com 🖤 e Django.
+Desenvolvido por **[Cauê Mateus Gil](https://github.com/ZzftmzZ)**  
+*Engenheiro de Software & Desenvolvedor Full Stack*
 
 </div>
-
-
-<!-- Dummy activity commit: 2026-11-11T20:23:37Z -->
-
----
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-## 🤖 Auto‑commit de atividade
-
-Este repositório tem um **GitHub Actions** configurado para gerar commits *dummy* de forma aleatória, simulando atividade contínua mesmo quando o computador local está desligado. O workflow roda **diariamente às 02:00 UTC** com ~30 % de chance de executar e inclui um atraso aleatório de até 24 h, de modo que os commits podem acontecer no mesmo dia, em dias alternados ou em semanas diferentes.
-
-Esses commits adicionam a seguinte linha ao `README.md`:
-
-```html
-<!-- Auto activity commit
-
-<!-- Atualização automática: 2026-11-11T20:50:00Z --> <timestamp> -->
-```
-
-Isso ajuda a mostrar aos recrutadores e empresas que o projeto está sendo mantido.
-
----
-
-<!-- Atualização automática: 2026-11-11T20:48:30Z -->
-
-<!-- Auto activity commit 2026-11-11T20:58:24Z -->
